@@ -2,9 +2,7 @@
 <html lang="ar" dir="rtl" class="dark">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="theme-color" content="#0F172A" />
-  <meta name="author" content="AMAROV007" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TaskWave | منصة المهام المصغرة ومكافآت العملات المشفرة</title>
   <meta name="description" content="منصة TaskWave للربح من إنجاز المهام الرقمية وإطلاق الحملات الإعلانية بنظام مالي مشفر آمن وسجل معاملات محمي." />
   <meta property="og:title" content="TaskWave | منصة المهام المصغرة ومكافآت العملات المشفرة" />
@@ -47,8 +45,7 @@
               blue: '#38BDF8',
               gold: '#F59E0B',
               rose: '#F43F5E',
-              violet: '#8B5CF6',
-              teal: '#2DD4BF'
+              violet: '#8B5CF6'
             }
           }
         }
@@ -104,31 +101,6 @@
       box-shadow: 0 0 20px -5px rgba(59, 130, 246, 0.35);
       border-color: rgba(59, 130, 246, 0.4);
     }
-    body { min-height: 100vh; min-height: 100dvh; }
-    html { -webkit-tap-highlight-color: transparent; }
-    /* scrollbar-none was used in the markup but never defined */
-    .scrollbar-none { scrollbar-width: none; -ms-overflow-style: none; }
-    .scrollbar-none::-webkit-scrollbar { display: none; }
-
-    /* ---- Bottom navigation must never cover the footer / copyright ---- */
-    .mobile-bottom-nav { padding-bottom: calc(0.75rem + env(safe-area-inset-bottom, 0px)); }
-    .app-footer { padding-bottom: 2rem; }
-    @media (max-width: 767px) {
-      /* nav height (~4.5rem) + safe area + room for the floating support button */
-      .app-footer { padding-bottom: calc(9.5rem + env(safe-area-inset-bottom, 0px)); }
-    }
-
-    /* ---- Floating Telegram support button ---- */
-    #support-fab { bottom: calc(5.75rem + env(safe-area-inset-bottom, 0px)); }
-    @media (min-width: 768px) { #support-fab { bottom: 1.5rem; } }
-    #support-fab .fab-label {
-      background: rgba(15, 23, 42, 0.92);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    /* ---- Toasts sit above the bottom nav on mobile ---- */
-    #toast-container { bottom: calc(5.75rem + env(safe-area-inset-bottom, 0px)); }
-    @media (min-width: 768px) { #toast-container { bottom: 1.25rem; } }
   </style>
 </head>
 <body class="min-h-screen flex flex-col bg-navy-900 text-slate-100 antialiased selection:bg-ocean-500 selection:text-white">
@@ -188,7 +160,7 @@
             <i class="fa-solid fa-sitemap text-crypto-violet"></i>
             <span>شبكة الإحالات</span>
           </button>
-          <button onclick="app.navigate('admin')" id="nav-admin" class="nav-tab-btn hidden flex px-4 py-2 rounded-xl transition-all items-center gap-2 bg-rose-500/10 text-rose-400 border border-rose-500/30 hover:bg-rose-500/20">
+          <button onclick="app.navigate('admin')" id="nav-admin" class="nav-tab-btn hidden px-4 py-2 rounded-xl transition-all items-center gap-2 bg-rose-500/10 text-rose-400 border border-rose-500/30 hover:bg-rose-500/20">
             <i class="fa-solid fa-shield-halved"></i>
             <span>الإدارة الشاملة</span>
           </button>
@@ -203,7 +175,7 @@
   </div>
 
   <!-- FIXED BOTTOM NAVIGATION BAR FOR MOBILE (Mobile-First) -->
-  <nav class="mobile-bottom-nav md:hidden fixed bottom-0 left-0 right-0 w-full z-50 flex justify-around px-3 pt-3 bg-slate-900 border-t border-slate-700 shadow-2xl select-none">
+  <nav class="md:hidden fixed bottom-0 left-0 right-0 w-full z-50 flex justify-around p-3 bg-slate-900 border-t border-slate-700 shadow-2xl select-none">
     <button onclick="app.navigate('tasks')" id="mob-tasks" class="mob-nav-btn flex flex-col items-center gap-1 text-ocean-400 font-bold py-1 px-2 transition-all">
       <i class="fa-solid fa-list-check text-base"></i>
       <span class="text-[10px]">المهام</span>
@@ -226,7 +198,12 @@
     </button>
   </nav>
 
-  <!-- MAIN APP CONTAINER (With explicit pt-24 sm:pt-28 and pb-24 md:pb-12 for complete overlap prevention) -->
+  <!-- FLOATING TELEGRAM SUPPORT BUTTON -->
+  <a href="https://t.me/binkpanter" target="_blank" class="fixed bottom-24 md:bottom-8 right-4 md:right-8 z-[60] w-14 h-14 bg-sky-500 hover:bg-sky-400 text-white rounded-full flex items-center justify-center text-3xl shadow-lg shadow-sky-500/40 hover:scale-110 transition-all border-2 border-slate-900">
+    <i class="fa-brands fa-telegram"></i>
+  </a>
+
+  <!-- MAIN APP CONTAINER -->
   <main class="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8 pt-24 sm:pt-28 pb-24 md:pb-12">
 
     <!-- Anti-Tamper Security Banner -->
@@ -306,7 +283,7 @@
         <div class="flex items-center gap-3 w-full sm:w-auto">
           <div class="relative w-full sm:w-64">
             <i class="fa-solid fa-magnifying-glass absolute right-3.5 top-3 text-slate-500 text-xs"></i>
-            <input type="text" id="task-search-input" oninput="app.renderTasks()" placeholder="بحث في المهام..." class="w-full bg-navy-800/90 border border-slate-700/80 rounded-xl pr-9 pl-4 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-crypto-teal transition-all">
+            <input type="text" id="task-search-input" onkeyup="app.renderTasks()" placeholder="بحث في المهام..." class="w-full bg-navy-800/90 border border-slate-700/80 rounded-xl pr-9 pl-4 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-crypto-teal transition-all">
           </div>
           <span id="tasks-count-badge" class="text-xs text-slate-400 font-semibold whitespace-nowrap bg-navy-800 px-3 py-2 rounded-xl border border-slate-800">
             0 مهام متاحة
@@ -463,7 +440,6 @@
               <span>طلب سحب</span>
             </button>
           </div>
-          <p id="wallet-pending-deposits" class="hidden mt-3 text-[11px] text-amber-300"></p>
         </div>
 
         <!-- Total Earned Card -->
@@ -617,9 +593,6 @@
           <button onclick="app.setAdminSubTab('submissions')" id="adm-tab-submissions" class="adm-subtab px-3.5 py-2 rounded-lg text-slate-400 hover:text-white transition-all">
             <i class="fa-solid fa-clipboard-check ml-1"></i>مراجعة الإثباتات
           </button>
-          <button onclick="app.setAdminSubTab('deposits')" id="adm-tab-deposits" class="adm-subtab px-3.5 py-2 rounded-lg text-slate-400 hover:text-white transition-all whitespace-nowrap">
-            <i class="fa-solid fa-circle-down ml-1"></i>طلبات الإيداع
-          </button>
           <button onclick="app.setAdminSubTab('withdrawals')" id="adm-tab-withdrawals" class="adm-subtab px-3.5 py-2 rounded-lg text-slate-400 hover:text-white transition-all">
             <i class="fa-solid fa-money-bill-transfer ml-1"></i>طلبات السحب
           </button>
@@ -735,18 +708,6 @@
         </div>
       </div>
 
-      <!-- ADMIN SUBTAB: DEPOSIT REQUESTS (طلبات الإيداع بانتظار التأكيد) -->
-      <div id="admin-subtab-deposits" class="admin-content-panel hidden space-y-4">
-        <div class="flex items-center justify-between">
-          <div>
-            <h3 class="text-base font-bold text-white">طلبات الإيداع بانتظار التأكيد</h3>
-            <p class="text-xs text-slate-400">تحقق من وصول الحوالة (TXID) في محفظتك ثم اعتمد الطلب ليُضاف الرصيد لسجل المستخدم</p>
-          </div>
-          <span id="pending-deposits-count" class="text-xs bg-amber-500/20 text-amber-300 border border-amber-500/30 px-3 py-1 rounded-full font-bold">0 طلب معلق</span>
-        </div>
-        <div id="admin-deposits-list" class="space-y-4"></div>
-      </div>
-
       <!-- ADMIN SUBTAB 3: WITHDRAWAL REQUESTS (طلبات السحب واسترداد المرفوض) -->
       <div id="admin-subtab-withdrawals" class="admin-content-panel hidden space-y-4">
         <div class="flex items-center justify-between">
@@ -802,49 +763,35 @@
         </div>
       </div>
 
-      <!-- ADMIN SUBTAB 6: DEPOSIT ADDRESSES (إعدادات عناوين الإيداع) -->
+      <!-- ADMIN SUBTAB 6: DYNAMIC WALLET SETTINGS (إعدادات المحفظة الديناميكية) -->
       <div id="admin-subtab-settings" class="admin-content-panel hidden max-w-2xl space-y-6">
         <div class="glass-card rounded-3xl p-6 border border-slate-800">
-          <div class="flex items-center gap-3 mb-5">
+          <div class="flex items-center gap-3 mb-6">
             <div class="w-10 h-10 rounded-xl bg-blue-500/20 text-blue-400 border border-blue-500/30 flex items-center justify-center text-lg">
               <i class="fa-solid fa-wallet"></i>
             </div>
             <div>
               <h3 class="text-base font-bold text-white">عناوين استلام الإيداعات بالمنصة</h3>
-              <p class="text-xs text-slate-400">المصدر الفعلي: <span class="font-mono">CONFIG.DEPOSIT</span> في الكود، أو ملف JSON بعيد (<span class="font-mono">REMOTE_SETTINGS_URL</span>)</p>
+              <p class="text-xs text-slate-400">تظهر هذه العناوين ديناميكياً لجميع المستخدمين في صفحة الإيداع</p>
             </div>
-          </div>
-
-          <div class="mb-5 p-3 rounded-xl bg-amber-500/10 border border-amber-500/30 text-[11px] text-amber-200 leading-relaxed">
-            <i class="fa-solid fa-circle-info ml-1"></i>
-            بيانات التطبيق تُحفظ داخل متصفح كل مستخدم، لذلك لا يمكن لأي حفظ من هذه الصفحة أن يصل إلى هواتف المستخدمين الآخرين.
-            هنا يمكنك <strong>معاينة</strong> العنوان الجديد على جهازك وتوليد ملف الإعدادات الجاهز؛ ولتعميمه على الجميع ضعه في ملف JSON المرتبط بـ <span class="font-mono">REMOTE_SETTINGS_URL</span> أو عدّل <span class="font-mono">CONFIG.DEPOSIT</span> وأعد نشر الصفحة.
           </div>
 
           <form id="admin-wallet-settings-form" onsubmit="event.preventDefault(); app.saveAdminWalletSettings();" class="space-y-4">
             <div>
               <label class="block text-xs font-semibold text-slate-300 mb-1.5">عنوان USDT (شبكة BEP20 - BNB Smart Chain)</label>
-              <input type="text" id="setting-usdt-address" required placeholder="0x..." autocomplete="off" spellcheck="false" class="w-full bg-navy-800 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs text-white font-mono focus:outline-none focus:border-blue-500">
+              <input type="text" id="setting-usdt-address" required placeholder="0x..." class="w-full bg-navy-800 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs text-white font-mono focus:outline-none focus:border-blue-500">
             </div>
 
             <div>
               <label class="block text-xs font-semibold text-slate-300 mb-1.5">معرف باينانس باي (Binance Pay ID / Pay ID)</label>
-              <input type="text" id="setting-binance-pay-id" required placeholder="مثال: 589412301" inputmode="numeric" autocomplete="off" class="w-full bg-navy-800 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs text-white font-mono focus:outline-none focus:border-blue-500">
+              <input type="text" id="setting-binance-pay-id" required placeholder="مثال: 589412301" class="w-full bg-navy-800 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs text-white font-mono focus:outline-none focus:border-blue-500">
             </div>
 
             <button type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-black text-xs transition-all flex items-center justify-center gap-2 shadow-lg shadow-blue-600/30">
               <i class="fa-solid fa-floppy-disk"></i>
-              <span>معاينة العنوان وتوليد ملف الإعدادات</span>
+              <span>حفظ وتحديث عناوين الدفع عالمياً</span>
             </button>
           </form>
-
-          <div id="settings-output-wrap" class="hidden mt-5 space-y-2">
-            <label class="block text-xs font-semibold text-slate-300">ملف الإعدادات الجاهز (JSON)</label>
-            <textarea id="setting-json-output" readonly rows="4" class="w-full bg-navy-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs text-ocean-400 font-mono focus:outline-none"></textarea>
-            <button type="button" onclick="app.copyText(document.getElementById('setting-json-output').value)" class="px-4 py-2 rounded-xl bg-navy-800 hover:bg-slate-700 border border-slate-700 text-white font-bold text-xs flex items-center gap-1.5">
-              <i class="fa-solid fa-copy"></i><span>نسخ الإعدادات</span>
-            </button>
-          </div>
         </div>
       </div>
     </section>
@@ -852,13 +799,13 @@
   </main>
 
   <!-- FOOTER -->
-  <footer class="app-footer border-t border-slate-800/80 bg-navy-950 pt-8 px-4 text-xs text-slate-500 text-center">
+  <footer class="border-t border-slate-800/80 bg-navy-950 pt-8 pb-24 md:pb-8 px-4 text-xs text-slate-500 text-center relative z-40">
     <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-      <div class="flex items-center justify-center gap-2 flex-wrap">
+      <div class="flex items-center gap-2">
         <span class="text-white font-black font-mono">TaskWave</span>
-        <span>© 2026 جميع الحقوق محفوظة لـ <strong class="text-slate-300 font-mono tracking-wide">AMAROV007</strong></span>
+        <span>© 2026 AMAROV007 - جميع الحقوق محفوظة.</span>
       </div>
-      <div class="flex items-center justify-center gap-4 flex-wrap text-slate-400">
+      <div class="flex items-center gap-4 text-slate-400">
         <span class="flex items-center gap-1.5"><i class="fa-solid fa-shield text-crypto-teal"></i> حماية المعاملات بـ Hash Ledger</span>
         <span class="flex items-center gap-1.5"><i class="fa-solid fa-bolt text-crypto-gold"></i> دفع آلي سريع</span>
       </div>
@@ -974,7 +921,7 @@
             </label>
             
             <div class="relative border-2 border-dashed border-slate-700 hover:border-blue-500 rounded-2xl p-4 text-center cursor-pointer transition-all bg-navy-950/60" onclick="document.getElementById('proof-file-input').click()">
-              <input type="file" id="proof-file-input" accept="image/png,image/jpeg,image/webp,image/gif" class="hidden" onchange="app.handleProofImageChange(event)">
+              <input type="file" id="proof-file-input" accept="image/*" required class="hidden" onchange="app.handleProofImageChange(event)">
               
               <div id="proof-upload-placeholder" class="py-4">
                 <i class="fa-solid fa-cloud-arrow-up text-3xl text-slate-500 mb-2"></i>
@@ -1024,7 +971,7 @@
               <span class="font-semibold text-slate-300"><i class="fa-solid fa-link text-blue-400 ml-1"></i>عنوان USDT (شبكة BEP20):</span>
               <button onclick="app.copyText(document.getElementById('deposit-bep20-addr').innerText)" class="text-blue-400 hover:underline text-[11px]"><i class="fa-solid fa-copy ml-1"></i>نسخ</button>
             </div>
-            <p id="deposit-bep20-addr" class="text-xs font-mono text-white break-all bg-navy-900 p-2 rounded-lg border border-slate-800/80 select-all">جاري التحميل...</p>
+            <p id="deposit-bep20-addr" class="text-xs font-mono text-white break-all bg-navy-900 p-2 rounded-lg border border-slate-800/80">0x71C...جاري التحميل</p>
           </div>
 
           <!-- Dynamic Binance Pay ID -->
@@ -1033,30 +980,25 @@
               <span class="font-semibold text-slate-300"><i class="fa-solid fa-bolt text-crypto-gold ml-1"></i>معرف Binance Pay ID:</span>
               <button onclick="app.copyText(document.getElementById('deposit-binance-id').innerText)" class="text-crypto-gold hover:underline text-[11px]"><i class="fa-solid fa-copy ml-1"></i>نسخ</button>
             </div>
-            <p id="deposit-binance-id" class="text-xs font-mono text-crypto-gold font-bold bg-navy-900 p-2 rounded-lg border border-slate-800/80 select-all">جاري التحميل...</p>
+            <p id="deposit-binance-id" class="text-xs font-mono text-crypto-gold font-bold bg-navy-900 p-2 rounded-lg border border-slate-800/80">589412301</p>
           </div>
-        </div>
-
-        <div class="mb-4 p-3 rounded-xl bg-amber-500/10 border border-amber-500/30 text-[11px] text-amber-200 leading-relaxed">
-          <i class="fa-solid fa-triangle-exclamation ml-1"></i>
-          أرسل <strong>USDT فقط</strong> عبر شبكة <strong>BEP20</strong>. التحويل بأي شبكة أخرى قد يؤدي إلى فقدان المبلغ نهائياً. يُضاف الرصيد بعد تأكيد الإدارة لوصول الحوالة.
         </div>
 
         <!-- Deposit Confirmation Form -->
         <form id="deposit-form" onsubmit="event.preventDefault(); app.handleDepositSubmit();" class="space-y-4 border-t border-slate-800 pt-4">
           <div>
             <label class="block text-xs font-semibold text-slate-300 mb-1.5">المبلغ المحول ($ USDT)</label>
-            <input type="number" id="deposit-amount" min="1" step="0.01" inputmode="decimal" required placeholder="مثال: 10" class="w-full bg-navy-800 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs text-white font-mono focus:outline-none focus:border-blue-500">
+            <input type="number" id="deposit-amount" min="1" step="0.5" required placeholder="مثال: 10" class="w-full bg-navy-800 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs text-white font-mono focus:outline-none focus:border-blue-500">
           </div>
 
           <div>
             <label class="block text-xs font-semibold text-slate-300 mb-1.5">معرف المعاملة (TXID أو رقم عملية Binance Pay)</label>
-            <input type="text" id="deposit-txid" required maxlength="120" autocomplete="off" spellcheck="false" placeholder="0x... أو Transaction ID" class="w-full bg-navy-800 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs text-white font-mono focus:outline-none focus:border-blue-500">
+            <input type="text" id="deposit-txid" required placeholder="0x... أو Transaction ID" class="w-full bg-navy-800 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs text-white font-mono focus:outline-none focus:border-blue-500">
           </div>
 
           <button type="submit" class="w-full py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-black text-xs transition-all flex items-center justify-center gap-2 shadow-lg shadow-blue-600/30">
             <i class="fa-solid fa-check-circle"></i>
-            <span>إرسال طلب الإيداع للمراجعة</span>
+            <span>تأكيد الإيداع وإضافته للسجل المالي</span>
           </button>
         </form>
       </div>
@@ -1100,7 +1042,7 @@
 
           <div>
             <label class="block text-xs font-semibold text-slate-300 mb-1.5">المبلغ المطلوب سحبه ($ USDT)</label>
-            <input type="number" id="withdraw-amount" min="1" step="0.01" inputmode="decimal" required placeholder="1.00" class="w-full bg-navy-800 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs text-white font-mono focus:outline-none focus:border-rose-400">
+            <input type="number" id="withdraw-amount" min="1" step="0.1" required placeholder="1.00" class="w-full bg-navy-800 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs text-white font-mono focus:outline-none focus:border-rose-400">
           </div>
 
           <div class="p-3 rounded-xl bg-rose-500/10 border border-rose-500/20 text-[11px] text-rose-300">
@@ -1129,18 +1071,7 @@
   </div>
 
   <!-- TOAST NOTIFICATIONS CONTAINER -->
-  <div id="toast-container" class="fixed left-4 right-20 md:right-auto md:left-5 z-[60] flex flex-col gap-2 pointer-events-none"></div>
-
-  <!-- FLOATING TELEGRAM SUPPORT BUTTON -->
-  <a id="support-fab" href="https://t.me/binkpanter" target="_blank" rel="noopener noreferrer"
-     aria-label="الدعم الفني عبر تيليجرام" title="الدعم الفني عبر تيليجرام"
-     class="fixed right-4 z-40 flex items-center gap-2 select-none">
-    <span class="fab-label hidden sm:block text-xs font-bold text-slate-200 px-3 py-1.5 rounded-full shadow-lg">الدعم الفني</span>
-    <span class="relative w-14 h-14 rounded-full bg-gradient-to-tr from-sky-500 to-blue-600 text-white flex items-center justify-center text-3xl shadow-xl shadow-sky-500/30 border border-white/10 hover:scale-105 active:scale-95 transition-transform">
-      <span class="absolute inset-0 rounded-full bg-sky-400/30 animate-ping pointer-events-none"></span>
-      <i class="fa-brands fa-telegram relative"></i>
-    </span>
-  </a>
+  <div id="toast-container" class="fixed bottom-5 left-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
 
   <!-- PLACEHOLDER FOR APP SCRIPT -->
   <script>
@@ -1150,81 +1081,37 @@
      */
     const CONFIG = {
       SUPER_ADMIN_EMAIL: 'amarov000777@gmail.com',
+      SUPER_ADMIN_PASS: 'AM31630903ar$',
       STORAGE_KEY: '_TW_OBFUSCATED_STORE_V2_',
       DEVICE_FP_KEY: '_TW_DEVICE_FINGERPRINT_ID_',
-      SESSION_KEY: '_TW_SESSION_USER_ID_',
       REFERRAL_BONUS: 0.12,
       PLATFORM_FEE_PERCENT: 0.10,
-      MIN_WITHDRAWAL: 1.00,
-
-      // ---- عناوين الإيداع: هذا هو المصدر الوحيد للعناوين (لا تُقرأ من localStorage أبداً) ----
-      // غيّر القيم هنا ثم أعد نشر الصفحة، فيراها كل المستخدمين فوراً.
-      DEPOSIT: {
-        usdtAddress: '0x8849bCd25aF42D157aCe9523E9012Fa8F374188b',
-        binancePayId: '589412301'
-      },
-      // اختياري: رابط ملف JSON على استضافتك بالشكل {"usdtAddress":"0x...","binancePayId":"123456"}
-      // إن وُضع، يتم جلبه عند كل فتح للتطبيق ويتقدّم على القيم أعلاه (تغيير العنوان بدون إعادة نشر الصفحة).
-      REMOTE_SETTINGS_URL: '',
-
-      // زر الدعم العائم
-      SUPPORT_URL: 'https://t.me/binkpanter',
-
-      // اختياري: رابط البوت لروابط الإحالة داخل تيليجرام، مثال: 'https://t.me/YourBot/app'
-      BOT_LINK: ''
-    };
-
-    // ---- Safe-output helpers (يمنع حقن HTML/JS من بيانات المستخدمين) ----
-    const esc = (v) => String(v ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-    const safeUrl = (u) => {
-      try {
-        const x = new URL(String(u || '').trim());
-        return (x.protocol === 'http:' || x.protocol === 'https:') ? x.href : '#';
-      } catch (e) { return '#'; }
-    };
-    const safeImg = (src) => /^data:image\/(png|jpe?g|webp|gif|svg\+xml)[;,]/i.test(String(src || '')) ? String(src) : '';
-    const Validators = {
-      usdt: (v) => /^0x[a-fA-F0-9]{40}$/.test(String(v || '').trim()),
-      payId: (v) => /^\d{5,15}$/.test(String(v || '').trim()),
-      txid: (v) => /^[A-Za-z0-9_\-:.]{6,120}$/.test(String(v || '').trim()),
-      email: (v) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(String(v || '').trim())
+      MIN_WITHDRAWAL: 1.00
     };
 
     // Obfuscation helpers (Strict Base64 + URI encode to prevent casual tampering)
     const Security = {
-      // Obfuscation only (NOT real encryption). New format is prefixed with "v3:" and is
-      // ~3x smaller than the old percent-encoded one, which matters for the 5MB localStorage quota.
       encrypt(data) {
         try {
           const jsonStr = JSON.stringify(data);
-          return 'v3:' + btoa(unescape(encodeURIComponent(jsonStr)));
+          return btoa(encodeURIComponent(jsonStr));
         } catch (e) {
           console.error("Encryption error", e);
           return null;
         }
       },
       decrypt(cipher) {
-        if (!cipher) return null;
         try {
-          if (cipher.startsWith('v3:')) {
-            return JSON.parse(decodeURIComponent(escape(atob(cipher.slice(3)))));
-          }
-          // legacy format (backward compatible with data already saved on users' devices)
-          return JSON.parse(decodeURIComponent(atob(cipher)));
+          if (!cipher) return null;
+          const jsonStr = decodeURIComponent(atob(cipher));
+          return JSON.parse(jsonStr);
         } catch (e) {
           console.error("Decryption error", e);
           return null;
         }
       },
-      async hashPassword(email, password) {
-        if (!window.crypto || !window.crypto.subtle) throw new Error('NO_SUBTLE_CRYPTO');
-        const data = new TextEncoder().encode('tw1|' + String(email).toLowerCase() + '|' + password);
-        const buf = await window.crypto.subtle.digest('SHA-256', data);
-        return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
-      },
       getOrCreateDeviceFingerprint() {
-        let fp = null;
-        try { fp = localStorage.getItem(CONFIG.DEVICE_FP_KEY); } catch (e) {}
+        let fp = localStorage.getItem(CONFIG.DEVICE_FP_KEY);
         if (!fp) {
           const navInfo = navigator.userAgent + '_' + (navigator.language || '') + '_' + screen.width + 'x' + screen.height;
           let hash = 0;
@@ -1234,7 +1121,7 @@
           }
           const randomSuffix = Math.random().toString(36).substring(2, 9);
           fp = 'FP-' + Math.abs(hash).toString(16).toUpperCase() + '-' + randomSuffix;
-          try { localStorage.setItem(CONFIG.DEVICE_FP_KEY, fp); } catch (e) {}
+          localStorage.setItem(CONFIG.DEVICE_FP_KEY, fp);
         }
         return fp;
       },
@@ -1247,6 +1134,8 @@
     // Initial Seed Data
     const INITIAL_DATA = {
       settings: {
+        usdtAddress: '0x8849bCd25aF42D157aCe9523E9012Fa8F374188b',
+        binancePayId: '589412301',
         platformFeePercent: 10
       },
       users: [
@@ -1254,7 +1143,7 @@
           id: 'usr_super_admin',
           name: 'الإدارة العليا (Super Admin)',
           email: 'amarov000777@gmail.com',
-          passwordHash: '54826b71ed327303a2a65c317373d3304df5f07fea9306331909627a4f4334e2',
+          password: 'AM31630903ar$',
           role: 'admin', // admin, moderator, user
           deviceFp: 'FP-SYS-ADMIN-MASTER',
           referralCode: 'TW-ADMIN',
@@ -1266,29 +1155,16 @@
           id: 'usr_demo_adv',
           name: 'كريم المسوق (Advertiser)',
           email: 'adv@taskwave.io',
-          passwordHash: '50994f545323215765157ff3191662892040154164e42fac7b8ca0a9e6730567',
+          password: 'Password123!',
           role: 'user',
           deviceFp: 'FP-DEMO-ADV-992',
           referralCode: 'TW-KAREEM',
           referredBy: 'usr_super_admin',
           referralBonusPaid: true,
           registeredAt: new Date(Date.now() - 20 * 86400000).toISOString()
-        },
-        {
-          id: 'usr_demo_worker',
-          name: 'سالم المحترف (Worker)',
-          email: 'salem@taskwave.io',
-          passwordHash: 'e407a1cbdc4efc57df7871925617cab510a3fbb9c21fa178921f77a74462df96',
-          role: 'user',
-          deviceFp: 'FP-DEMO-SALEM-331',
-          referralCode: 'TW-SALEM',
-          referredBy: 'usr_demo_adv',
-          referralBonusPaid: false,
-          registeredAt: new Date(Date.now() - 10 * 86400000).toISOString()
         }
       ],
       // IMMUTABLE LEDGER: Source of truth for all balances.
-      // Balance = Sum(CREDIT) - Sum(DEBIT)
       ledger: [
         {
           id: 'TX-DEP-INIT-1',
@@ -1299,139 +1175,28 @@
           description: 'إيداع احتياطي أولي لسيولة المنصة',
           timestamp: new Date(Date.now() - 25 * 86400000).toISOString(),
           referenceId: 'DEP-GENESIS'
-        },
-        {
-          id: 'TX-DEP-ADV-1',
-          userId: 'usr_demo_adv',
-          type: 'CREDIT',
-          category: 'DEPOSIT',
-          amount: 50.00,
-          description: 'شحن رصيد حملات إعلانية عبر USDT BEP20',
-          timestamp: new Date(Date.now() - 18 * 86400000).toISOString(),
-          referenceId: 'TX-0x981273921873'
-        },
-        {
-          id: 'TX-CAMP-ADV-1',
-          userId: 'usr_demo_adv',
-          type: 'DEBIT',
-          category: 'CAMPAIGN_FEE',
-          amount: 5.50,
-          description: 'تمويل حملة: اشتراك قناة تيليجرام للعملات الرقمية',
-          timestamp: new Date(Date.now() - 15 * 86400000).toISOString(),
-          referenceId: 'task_1'
-        },
-        {
-          id: 'TX-TASK-SALEM-1',
-          userId: 'usr_demo_worker',
-          type: 'CREDIT',
-          category: 'TASK_REWARD',
-          amount: 0.15,
-          description: 'مكافأة إنجاز مهمة: الاشتراك في قناة تيليجرام',
-          timestamp: new Date(Date.now() - 5 * 86400000).toISOString(),
-          referenceId: 'sub_seed_1'
         }
       ],
       tasks: [
         {
           id: 'task_1',
-          creatorId: 'usr_demo_adv',
-          creatorName: 'كريم المسوق',
-          title: 'الاشتراك في قناة تيليجرام لأخبار الكريبتو والتفاعل مع المنشور',
-          platform: 'telegram',
-          icon: 'fa-brands fa-telegram text-sky-400',
-          link: 'https://t.me/telegram',
-          instructions: 'اشترك بالقناة، وقم بالتفاعل برياكت (Fire 🔥) على آخر منشورين، والتقط لقطة شاشة للإثبات.',
-          reward: 0.15,
-          totalSlots: 30,
-          completedSlots: 18,
-          scarcityTag: 'متبقي أماكن محدودة!',
-          createdAt: new Date(Date.now() - 6 * 86400000).toISOString(),
-          status: 'active'
-        },
-        {
-          id: 'task_2',
           creatorId: 'usr_super_admin',
           creatorName: 'إدارة TaskWave',
-          title: 'مشاهدة فيديو يوتيوب لمدة دقيقتين ووضع إعجاب وتعليق محفز',
+          title: 'مشاهدة فيديو يوتيوب لمدة دقيقتين ووضع إعجاب',
           platform: 'youtube',
           icon: 'fa-brands fa-youtube text-red-500',
           link: 'https://youtube.com',
-          instructions: 'شاهد الفيديو لدقيقتين على الأقل، اضغط زر الإعجاب، واكتب تعليقاً حقيقياً يخص المحتوى.',
+          instructions: 'شاهد الفيديو لدقيقتين على الأقل، اضغط زر الإعجاب.',
           reward: 0.25,
           totalSlots: 50,
-          completedSlots: 47,
+          completedSlots: 5,
           scarcityTag: 'متبقي 3 أماكن فقط!',
           createdAt: new Date(Date.now() - 4 * 86400000).toISOString(),
           status: 'active'
-        },
-        {
-          id: 'task_3',
-          creatorId: 'usr_demo_adv',
-          creatorName: 'كريم المسوق',
-          title: 'متابعة حساب إنستغرام لمتجر إلكتروني مع حفظ آخر منشور (Save)',
-          platform: 'instagram',
-          icon: 'fa-brands fa-instagram text-pink-500',
-          link: 'https://instagram.com',
-          instructions: 'متابعة الحساب بدون إلغاء + حفظ (Bookmark) آخر منشورين مع التقاط شاشة توضح المتابعة.',
-          reward: 0.18,
-          totalSlots: 25,
-          completedSlots: 12,
-          scarcityTag: 'عائد مضاعف 🔥',
-          createdAt: new Date(Date.now() - 3 * 86400000).toISOString(),
-          status: 'active'
-        },
-        {
-          id: 'task_4',
-          creatorId: 'usr_super_admin',
-          creatorName: 'إدارة TaskWave',
-          title: 'متابعة حساب تيك توك وإعادة نشر أحدث مقطع (Repost)',
-          platform: 'tiktok',
-          icon: 'fa-brands fa-tiktok text-slate-100',
-          link: 'https://tiktok.com',
-          instructions: 'متابعة الحساب وعمل Repost وإعجاب لآخر فيديو قصير، ارفق لقطة تثبت ذلك.',
-          reward: 0.12,
-          totalSlots: 40,
-          completedSlots: 35,
-          scarcityTag: 'مهمة سريعة ⚡',
-          createdAt: new Date(Date.now() - 2 * 86400000).toISOString(),
-          status: 'active'
-        },
-        {
-          id: 'task_5',
-          creatorId: 'usr_demo_adv',
-          creatorName: 'كريم المسوق',
-          title: 'إعادة تغريدة (Retweet) وإعجاب لتغريدة إطلاق مشروع ويب 3 على X',
-          platform: 'twitter',
-          icon: 'fa-brands fa-x-twitter text-slate-200',
-          link: 'https://x.com',
-          instructions: 'قم بعمل Repost (Retweet) للتغريدة المثبتة مع وضع إعجاب واقتباس محفز.',
-          reward: 0.20,
-          totalSlots: 60,
-          completedSlots: 29,
-          scarcityTag: 'الأعلى طلباً ⭐',
-          createdAt: new Date(Date.now() - 1 * 86400000).toISOString(),
-          status: 'active'
         }
       ],
-      submissions: [
-        {
-          id: 'sub_seed_1',
-          taskId: 'task_1',
-          taskTitle: 'الاشتراك في قناة تيليجرام لأخبار الكريبتو والتفاعل مع المنشور',
-          taskReward: 0.15,
-          userId: 'usr_demo_worker',
-          userName: 'سالم المحترف (Worker)',
-          userEmail: 'salem@taskwave.io',
-          notes: 'تم الاشتراك بحسابي @salem_crypto وتفاعلت برياكت نار',
-          // Realistic placeholder preview image data
-          proofImage: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="600" height="400" viewBox="0 0 600 400"><rect width="600" height="400" fill="%231E293B"/><circle cx="300" cy="180" r="60" fill="%230284c7"/><path d="M275 180 L295 200 L335 155" stroke="white" stroke-width="8" fill="none" stroke-linecap="round"/><text x="300" y="280" fill="%2300F0B5" font-family="sans-serif" font-size="20" font-weight="bold" text-anchor="middle">إثبات اشتراك تيليجرام معتمد</text><text x="300" y="320" fill="%2394A3B8" font-family="sans-serif" font-size="14" text-anchor="middle">@salem_crypto | تم التحقق بنجاح</text></svg>',
-          submittedAt: new Date(Date.now() - 5 * 86400000).toISOString(),
-          status: 'approved',
-          reviewedAt: new Date(Date.now() - 4 * 86400000).toISOString()
-        }
-      ],
-      withdrawals: [],
-      deposits: []
+      submissions: [],
+      withdrawals: []
     };
 
     // State Store Manager
@@ -1446,46 +1211,29 @@
           if (raw) {
             const parsed = Security.decrypt(raw);
             if (parsed && parsed.ledger && parsed.users) {
-              parsed.tasks = parsed.tasks || [];
-              parsed.submissions = parsed.submissions || [];
-              parsed.withdrawals = parsed.withdrawals || [];
-              parsed.deposits = parsed.deposits || [];
-              parsed.settings = parsed.settings || {};
-              // stale deposit addresses saved by older versions must never override CONFIG.DEPOSIT
-              delete parsed.settings.usdtAddress;
-              delete parsed.settings.binancePayId;
               return parsed;
             }
           }
         } catch (e) {
           console.warn("Storage load fallback", e);
         }
-        // NOTE: if nothing valid could be loaded we start from the seed data
         // Save initial default
         this.saveState(INITIAL_DATA);
         return JSON.parse(JSON.stringify(INITIAL_DATA));
       }
 
       save() {
-        return this.saveState(this.state);
+        this.saveState(this.state);
       }
 
       saveState(data) {
         const cipher = Security.encrypt(data);
-        if (!cipher) return false;
-        try {
+        if (cipher) {
           localStorage.setItem(CONFIG.STORAGE_KEY, cipher);
-          return true;
-        } catch (e) {
-          // QuotaExceededError / storage blocked: tell the UI instead of failing silently
-          console.error('Storage save failed', e);
-          window.dispatchEvent(new Event('tw-storage-error'));
-          return false;
         }
       }
 
       // CRITICAL: DYNAMIC LEDGER-BASED BALANCE CALCULATION
-      // Balance is NEVER a stored integer, it is ALWAYS computed on-the-fly:
       getUserBalance(userId) {
         if (!userId) return 0;
         let balance = 0;
@@ -1505,7 +1253,7 @@
       getUserTotalEarned(userId) {
         if (!userId) return 0;
         return this.state.ledger
-          .filter(e => e.userId === userId && e.type === 'CREDIT' && (e.category === 'TASK_REWARD' || e.category === 'AFFILIATE_BONUS'))
+          .filter(e => e.userId === userId && e.type === 'CREDIT' && (e.category === 'TASK_REWARD' || e.category === 'AFFILIATE_BONUS' || e.category === 'PLATFORM_PROFIT'))
           .reduce((sum, e) => sum + Number(e.amount), 0);
       }
 
@@ -1523,7 +1271,7 @@
           id: Security.generateTXID(type === 'CREDIT' ? 'CR' : 'DB'),
           userId,
           type, // 'CREDIT' or 'DEBIT'
-          category, // 'TASK_REWARD' | 'AFFILIATE_BONUS' | 'DEPOSIT' | 'WITHDRAW_LOCK' | 'WITHDRAW_REFUND' | 'CAMPAIGN_FEE'
+          category, 
           amount: Number(Number(amount).toFixed(4)),
           description,
           timestamp: new Date().toISOString(),
@@ -1546,30 +1294,19 @@
         this.taskFilter = 'all';
         this.authMode = 'login'; // 'login' or 'register'
         this.currentProofImage = null;
-        this.remoteDeposit = null;   // addresses loaded from REMOTE_SETTINGS_URL
-        this.runtimeDeposit = null;  // admin live-preview (memory only, never persisted)
-        this.captchaExpected = null;
 
         this.init();
       }
 
       init() {
         // Telegram Mini App (TMA) Integration
-        const tg = window.Telegram && window.Telegram.WebApp;
-        if (tg) {
-          const safe = (fn) => { try { fn(); } catch (e) { console.warn('TMA:', e); } };
-          safe(() => tg.ready());
-          safe(() => tg.expand());
-          safe(() => {
-            if (tg.isVersionAtLeast && tg.isVersionAtLeast('6.1')) {
-              tg.setHeaderColor('#0F172A');
-              tg.setBackgroundColor('#0F172A');
-            }
-          });
-          // prevents closing the mini app by accidentally swiping down while scrolling
-          safe(() => {
-            if (tg.isVersionAtLeast && tg.isVersionAtLeast('7.7') && tg.disableVerticalSwipes) tg.disableVerticalSwipes();
-          });
+        if (window.Telegram && window.Telegram.WebApp) {
+          try {
+            window.Telegram.WebApp.expand();
+            window.Telegram.WebApp.ready();
+          } catch (e) {
+            console.warn("TMA error:", e);
+          }
         }
 
         // Setup persistent device fingerprint
@@ -1582,133 +1319,18 @@
         const urlParams = new URLSearchParams(window.location.search);
         this.pendingReferralCode = tmaParam || urlParams.get('ref') || null;
 
-        // Restore logged in session (localStorage so the user stays logged in when the mini app is reopened)
-        let savedUserId = null;
-        try { savedUserId = localStorage.getItem(CONFIG.SESSION_KEY) || sessionStorage.getItem(CONFIG.SESSION_KEY); } catch (e) {}
+        // Restore logged in user session
+        const savedUserId = sessionStorage.getItem('_TW_SESSION_USER_ID_');
         if (savedUserId) {
           const user = this.store.state.users.find(u => u.id === savedUserId);
           if (user) this.currentUser = user;
         }
 
-        // Global listeners
-        window.addEventListener('tw-storage-error', () => {
-          this.toast('تعذّر حفظ البيانات: مساحة التخزين في المتصفح ممتلئة. احذف بعض الإثباتات القديمة أو حاول مجدداً.', 'error');
-        });
-        document.addEventListener('click', (e) => {
-          // links: open through Telegram when running as a mini app (target=_blank is unreliable in the WebView)
-          const a = e.target.closest ? e.target.closest('a[target="_blank"]') : null;
-          if (a) {
-            e.preventDefault();
-            const href = a.getAttribute('href');
-            if (href && href !== '#') this.openLink(href);
-            return;
-          }
-          // close the profile dropdown when tapping elsewhere
-          if (!e.target.closest || !e.target.closest('#profile-menu-wrap')) this.closeProfileMenu();
-        });
-
-        this.upgradePasswords();
-        this.loadRemoteSettings();
+        // Initialize Live Ticker marquee
         this.initLiveTicker();
+
+        // Render Initial UI
         this.renderAll();
-        this.calculateCampaignCost();
-      }
-
-      // ---------- roles ----------
-      isAdmin() { return !!this.currentUser && this.currentUser.role === 'admin'; }
-      isStaff() { return !!this.currentUser && (this.currentUser.role === 'admin' || this.currentUser.role === 'moderator'); }
-
-      // ---------- deposit addresses: CONFIG -> remote file -> admin live preview ----------
-      getDepositSettings() {
-        return Object.assign({}, CONFIG.DEPOSIT, this.remoteDeposit || {}, this.runtimeDeposit || {});
-      }
-
-      async loadRemoteSettings() {
-        const url = CONFIG.REMOTE_SETTINGS_URL;
-        if (!url) return;
-        try {
-          const res = await fetch(url + (url.includes('?') ? '&' : '?') + 't=' + Date.now(), { cache: 'no-store' });
-          if (!res.ok) throw new Error('HTTP ' + res.status);
-          const data = await res.json();
-          const next = {};
-          if (Validators.usdt(data.usdtAddress)) next.usdtAddress = String(data.usdtAddress).trim();
-          if (Validators.payId(data.binancePayId)) next.binancePayId = String(data.binancePayId).trim();
-          this.remoteDeposit = next;
-          this.updateDynamicWalletsInDepositModal();
-        } catch (e) {
-          console.warn('Remote settings unavailable, using built-in addresses:', e);
-        }
-      }
-
-      // old versions saved the admin password in plain text: convert any leftovers to a SHA-256 hash
-      async upgradePasswords() {
-        let changed = false;
-        for (const u of this.store.state.users) {
-          if (u.password && !u.passwordHash) {
-            try {
-              u.passwordHash = await Security.hashPassword(u.email, u.password);
-              delete u.password;
-              changed = true;
-            } catch (e) { /* no WebCrypto: keep legacy value, login still works through the fallback */ }
-          }
-        }
-        if (changed) this.store.save();
-      }
-
-      // ---------- UI helpers ----------
-      openLink(url) {
-        const tg = window.Telegram && window.Telegram.WebApp;
-        try {
-          if (tg && /^https?:\/\/(t\.me|telegram\.me)\//i.test(url) && tg.openTelegramLink) tg.openTelegramLink(url);
-          else if (tg && tg.openLink) tg.openLink(url);
-          else window.open(url, '_blank', 'noopener');
-        } catch (e) {
-          window.open(url, '_blank', 'noopener');
-        }
-      }
-
-      toggleProfileMenu() {
-        const m = document.getElementById('profile-menu');
-        if (m) m.classList.toggle('hidden');
-      }
-
-      closeProfileMenu() {
-        const m = document.getElementById('profile-menu');
-        if (m) m.classList.add('hidden');
-      }
-
-      confirmAction(message, onConfirm) {
-        const tg = window.Telegram && window.Telegram.WebApp;
-        if (tg && tg.showConfirm && tg.isVersionAtLeast && tg.isVersionAtLeast('6.2')) {
-          tg.showConfirm(message, (ok) => { if (ok) onConfirm(); });
-        } else if (window.confirm(message)) {
-          onConfirm();
-        }
-      }
-
-      // screenshots are shrunk before saving: a raw photo easily exceeds the whole localStorage quota
-      compressImage(file, maxSide = 800, quality = 0.65) {
-        return new Promise((resolve, reject) => {
-          const url = URL.createObjectURL(file);
-          const img = new Image();
-          img.onload = () => {
-            try {
-              const ratio = Math.min(1, maxSide / Math.max(img.width, img.height, 1));
-              const w = Math.max(1, Math.round(img.width * ratio));
-              const h = Math.max(1, Math.round(img.height * ratio));
-              const canvas = document.createElement('canvas');
-              canvas.width = w; canvas.height = h;
-              const ctx = canvas.getContext('2d');
-              ctx.fillStyle = '#ffffff';
-              ctx.fillRect(0, 0, w, h);
-              ctx.drawImage(img, 0, 0, w, h);
-              resolve(canvas.toDataURL('image/jpeg', quality));
-            } catch (err) { reject(err); }
-            finally { URL.revokeObjectURL(url); }
-          };
-          img.onerror = () => { URL.revokeObjectURL(url); reject(new Error('IMAGE_LOAD_FAILED')); };
-          img.src = url;
-        });
       }
 
       openNewCampaignView() {
@@ -1730,43 +1352,34 @@
       }
 
       navigate(viewName) {
-        this.closeProfileMenu();
-
         // Enforce admin permission for admin view
-        if (viewName === 'admin' && !this.isStaff()) {
+        if (viewName === 'admin' && (!this.currentUser || (this.currentUser.role !== 'admin' && this.currentUser.role !== 'moderator'))) {
           this.toast('عذراً: الوصول للوحة الإدارة يتطلب صلاحيات Super Admin أو Moderator', 'error');
-          return;
-        }
-        // private views need a session (otherwise the previous user's data stays on screen)
-        if (['wallet', 'referrals', 'advertiser'].includes(viewName) && !this.currentUser) {
-          this.openAuthModal('login');
           return;
         }
 
         this.currentView = viewName;
         document.querySelectorAll('.view-panel').forEach(p => p.classList.add('hidden'));
-
+        
         const targetView = document.getElementById(`view-${viewName}`);
         if (targetView) targetView.classList.remove('hidden');
 
-        // Update desktop nav highlight
+        // Update nav buttons highlight
         document.querySelectorAll('.nav-tab-btn').forEach(b => {
           b.classList.remove('bg-blue-600', 'text-white', 'border-blue-500');
-          if (b.id !== 'nav-admin') b.classList.add('text-slate-300');
         });
         const activeNavBtn = document.getElementById(`nav-${viewName}`);
-        if (activeNavBtn && viewName !== 'admin') {
+        if (activeNavBtn) {
           activeNavBtn.classList.add('bg-blue-600', 'text-white');
-          activeNavBtn.classList.remove('text-slate-300');
         }
 
         // Update mobile bottom nav buttons highlight
         document.querySelectorAll('.mob-nav-btn').forEach(b => {
           b.classList.remove('text-ocean-400', 'font-bold');
-          if (b.id !== 'mob-admin') b.classList.add('text-slate-400');
+          b.classList.add('text-slate-400');
         });
         const activeMobBtn = document.getElementById(`mob-${viewName}`);
-        if (activeMobBtn && viewName !== 'admin') {
+        if (activeMobBtn) {
           activeMobBtn.classList.remove('text-slate-400');
           activeMobBtn.classList.add('text-ocean-400', 'font-bold');
         }
@@ -1840,14 +1453,14 @@
           </div>
 
           <!-- User Profile & Dropdown -->
-          <div class="relative" id="profile-menu-wrap">
-            <div onclick="event.stopPropagation(); app.toggleProfileMenu()" class="flex items-center gap-2.5 p-1 rounded-2xl bg-navy-950 border border-slate-800 cursor-pointer">
+          <div class="relative group">
+            <div class="flex items-center gap-2.5 p-1 rounded-2xl bg-navy-950 border border-slate-800 cursor-pointer">
               <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white font-bold text-xs shadow-md">
-                ${esc(this.currentUser.name.charAt(0))}
+                ${this.currentUser.name.charAt(0)}
               </div>
               <div class="hidden sm:block text-right pl-2">
                 <div class="text-xs font-bold text-white flex items-center gap-1.5">
-                  <span>${esc(this.currentUser.name.split(' ')[0])}</span>
+                  <span>${this.currentUser.name.split(' ')[0]}</span>
                   <span class="text-[10px] px-1.5 py-0.2 rounded border ${tier.badge}">
                     <i class="fa-solid ${tier.icon} mr-0.5"></i>${tier.name.split(' ')[0]}
                   </span>
@@ -1857,10 +1470,10 @@
             </div>
 
             <!-- Profile Menu Dropdown -->
-            <div id="profile-menu" class="hidden absolute left-0 mt-2 w-56 rounded-2xl p-2 border border-slate-700 shadow-2xl z-50 bg-slate-900">
+            <div class="absolute left-0 mt-2 w-56 glass-card rounded-2xl p-2 border border-slate-700 shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
               <div class="p-2 border-b border-slate-800 mb-1">
-                <span class="text-xs font-bold text-white block truncate">${esc(this.currentUser.name)}</span>
-                <span class="text-[11px] text-slate-400 block truncate">${esc(this.currentUser.email)}</span>
+                <span class="text-xs font-bold text-white block truncate">${this.currentUser.name}</span>
+                <span class="text-[11px] text-slate-400 block truncate">${this.currentUser.email}</span>
               </div>
               <button onclick="app.navigate('wallet')" class="w-full text-right px-3 py-2 rounded-xl text-xs text-slate-300 hover:text-white hover:bg-slate-800/80 flex items-center gap-2">
                 <i class="fa-solid fa-wallet text-ocean-400"></i>
@@ -1876,10 +1489,6 @@
                   <span>لوحة التحكم الإدارية</span>
                 </button>
               ` : ''}
-              <a href="${esc(CONFIG.SUPPORT_URL)}" target="_blank" rel="noopener noreferrer" class="w-full text-right px-3 py-2 rounded-xl text-xs text-slate-300 hover:text-white hover:bg-slate-800/80 flex items-center gap-2">
-                <i class="fa-brands fa-telegram text-sky-400"></i>
-                <span>الدعم الفني</span>
-              </a>
               <div class="border-t border-slate-800 mt-1 pt-1">
                 <button onclick="app.logout()" class="w-full text-right px-3 py-2 rounded-xl text-xs text-rose-400 hover:bg-rose-500/10 flex items-center gap-2 font-bold">
                   <i class="fa-solid fa-arrow-right-from-bracket"></i>
@@ -1942,7 +1551,7 @@
 
         if (!grid) return;
 
-        let filtered = this.store.state.tasks.filter(t => t.status === 'active' && t.completedSlots < t.totalSlots);
+        let filtered = this.store.state.tasks.filter(t => t.status === 'active');
         if (this.taskFilter !== 'all') {
           filtered = filtered.filter(t => t.platform === this.taskFilter);
         }
@@ -1968,8 +1577,7 @@
           const percent = Math.min(100, Math.round((task.completedSlots / task.totalSlots) * 100));
 
           // Check if current user already submitted this task
-          const alreadySubmitted = this.currentUser && this.store.state.submissions.some(s => s.taskId === task.id && s.userId === this.currentUser.id && s.status !== 'rejected');
-          const isOwn = !!this.currentUser && task.creatorId === this.currentUser.id;
+          const alreadySubmitted = this.currentUser && this.store.state.submissions.some(s => s.taskId === task.id && s.userId === this.currentUser.id);
 
           return `
             <div class="glass-card rounded-3xl p-5 border border-slate-800 glow-hover transition-all flex flex-col justify-between">
@@ -1978,22 +1586,22 @@
                 <div class="flex items-center justify-between gap-3 mb-3">
                   <div class="flex items-center gap-2.5">
                     <div class="w-10 h-10 rounded-2xl bg-navy-800 border border-slate-700/80 flex items-center justify-center text-xl shrink-0">
-                      <i class="${esc(task.icon)}"></i>
+                      <i class="${task.icon}"></i>
                     </div>
                     <div>
-                      <span class="text-[11px] font-bold text-slate-400 capitalize">${esc(task.platform)}</span>
-                      <span class="block text-[10px] text-slate-500">بواسطة ${esc(task.creatorName)}</span>
+                      <span class="text-[11px] font-bold text-slate-400 capitalize">${task.platform}</span>
+                      <span class="block text-[10px] text-slate-500">بواسطة ${task.creatorName}</span>
                     </div>
                   </div>
                   <!-- Scarcity Badge -->
                   <span class="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-300 border border-amber-500/30 whitespace-nowrap">
-                    ${esc(task.scarcityTag || 'متبقي أماكن محدودة!')}
+                    ${task.scarcityTag || 'متبقي أماكن محدودة!'}
                   </span>
                 </div>
 
                 <!-- Title & Instructions -->
-                <h3 class="text-sm font-bold text-white mb-2 leading-snug line-clamp-2">${esc(task.title)}</h3>
-                <p class="text-xs text-slate-400 leading-relaxed line-clamp-2 mb-4">${esc(task.instructions)}</p>
+                <h3 class="text-sm font-bold text-white mb-2 leading-snug line-clamp-2">${task.title}</h3>
+                <p class="text-xs text-slate-400 leading-relaxed line-clamp-2 mb-4">${task.instructions}</p>
 
                 <!-- Progress Bar -->
                 <div class="mb-4">
@@ -2015,16 +1623,16 @@
                 </div>
 
                 <div class="flex items-center gap-1.5">
-                  <a href="${esc(safeUrl(task.link))}" target="_blank" rel="noopener noreferrer" class="p-2 rounded-xl bg-navy-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 text-xs transition-all" title="فتح الرابط">
+                  <a href="${task.link}" target="_blank" class="p-2 rounded-xl bg-navy-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 text-xs transition-all" title="فتح الرابط">
                     <i class="fa-solid fa-arrow-up-right-from-square"></i>
                   </a>
-                  ${(alreadySubmitted || isOwn) ? `
+                  ${alreadySubmitted ? `
                     <button disabled class="px-3.5 py-2 rounded-xl bg-slate-800 text-slate-400 text-xs font-bold border border-slate-700 flex items-center gap-1.5 cursor-not-allowed">
                       <i class="fa-solid fa-clock-rotate-left"></i>
-                      <span>${isOwn ? 'حملتك الخاصة' : 'تم الإرسال مسبقاً'}</span>
+                      <span>تم الإرسال مسبقاً</span>
                     </button>
                   ` : `
-                    <button onclick="app.openSubmitProofModal('${esc(task.id)}')" class="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-black transition-all flex items-center gap-1.5 shadow-md shadow-blue-600/30">
+                    <button onclick="app.openSubmitProofModal('${task.id}')" class="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-black transition-all flex items-center gap-1.5 shadow-md shadow-blue-600/30">
                       <i class="fa-solid fa-upload"></i>
                       <span>تنفيذ وإثبات</span>
                     </button>
@@ -2049,9 +1657,9 @@
         const reward = parseFloat(rewardInput.value) || 0;
         const slots = parseInt(slotsInput.value) || 0;
 
-        const base = Number((reward * slots).toFixed(4));
-        const fee = Number((base * CONFIG.PLATFORM_FEE_PERCENT).toFixed(4));
-        const total = Number((base + fee).toFixed(4));
+        const base = reward * slots;
+        const fee = base * CONFIG.PLATFORM_FEE_PERCENT;
+        const total = base + fee;
 
         if (costBase) costBase.innerText = `$${base.toFixed(2)}`;
         if (costFee) costFee.innerText = `$${fee.toFixed(2)}`;
@@ -2074,19 +1682,6 @@
         const instructions = document.getElementById('adv-instructions').value.trim();
         const reward = parseFloat(document.getElementById('adv-reward').value);
         const slots = parseInt(document.getElementById('adv-slots').value);
-
-        if (title.length < 5 || title.length > 140) {
-          this.toast('عنوان المهمة يجب أن يكون بين 5 و 140 حرفاً', 'error');
-          return;
-        }
-        if (safeUrl(link) === '#') {
-          this.toast('رابط الوجهة يجب أن يبدأ بـ https:// أو http://', 'error');
-          return;
-        }
-        if (isNaN(reward) || reward < 0.02 || reward > 10 || isNaN(slots) || slots < 5 || slots > 1000) {
-          this.toast('المكافأة بين 0.02$ و 10$ وعدد المنفذين بين 5 و 1000', 'error');
-          return;
-        }
 
         const costs = this.calculateCampaignCost();
         if (!costs || costs.total <= 0) {
@@ -2114,6 +1709,21 @@
           referenceId: taskId
         });
 
+        // CREDIT PLATFORM PROFIT TO SUPER ADMIN REAL BALANCE IMMEDIATELY
+        if (costs.fee > 0) {
+          const superAdmin = this.store.state.users.find(u => u.email === CONFIG.SUPER_ADMIN_EMAIL);
+          if (superAdmin && superAdmin.id !== this.currentUser.id) {
+            this.store.addLedgerEntry({
+              userId: superAdmin.id,
+              type: 'CREDIT',
+              category: 'PLATFORM_PROFIT',
+              amount: costs.fee,
+              description: `هامش ربح المنصة من حملة: ${title}`,
+              referenceId: taskId
+            });
+          }
+        }
+
         // Set platform icon
         const iconMap = {
           telegram: 'fa-brands fa-telegram text-sky-400',
@@ -2131,7 +1741,7 @@
           title,
           platform,
           icon: iconMap[platform] || 'fa-solid fa-globe text-crypto-teal',
-          link: safeUrl(link),
+          link,
           instructions,
           reward,
           totalSlots: slots,
@@ -2146,7 +1756,6 @@
 
         this.toast(`تم خصم $${costs.total.toFixed(2)} بنجاح وتم نشر حملتك الإعلانية في سوق المهام!`, 'success');
         document.getElementById('create-campaign-form').reset();
-        this.calculateCampaignCost();
         this.renderAll();
       }
 
@@ -2187,24 +1796,24 @@
             <div class="glass-card rounded-2xl p-4 border border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div class="flex items-center gap-3">
                 <div class="w-10 h-10 rounded-xl bg-navy-800 border border-slate-700 flex items-center justify-center text-lg shrink-0">
-                  <i class="${esc(t.icon)}"></i>
+                  <i class="${t.icon}"></i>
                 </div>
                 <div>
-                  <h4 class="text-xs font-bold text-white leading-snug line-clamp-1">${esc(t.title)}</h4>
+                  <h4 class="text-xs font-bold text-white leading-snug line-clamp-1">${t.title}</h4>
                   <div class="flex items-center gap-3 text-[11px] text-slate-400 mt-1 font-mono">
                     <span>المكافأة: <strong class="text-crypto-teal">$${Number(t.reward).toFixed(2)}</strong></span>
                     <span>المنجز: <strong class="text-white">${t.completedSlots}/${t.totalSlots} (${percent}%)</strong></span>
-                    <span class="${t.status === 'active' ? 'text-emerald-400' : 'text-slate-500'} font-bold">${t.status === 'active' ? 'نشطة' : (t.status === 'completed' ? 'مكتملة' : 'متوقفة')}</span>
+                    <span class="${t.status === 'active' ? 'text-emerald-400' : 'text-slate-500'} font-bold">${t.status === 'active' ? 'نشطة' : 'متوقفة'}</span>
                   </div>
                 </div>
               </div>
 
               <div class="flex items-center gap-2 self-end sm:self-center shrink-0">
-                <a href="${esc(safeUrl(t.link))}" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1.5 rounded-lg bg-navy-800 hover:bg-slate-700 text-slate-300 text-xs border border-slate-700">
+                <a href="${t.link}" target="_blank" class="px-2.5 py-1.5 rounded-lg bg-navy-800 hover:bg-slate-700 text-slate-300 text-xs border border-slate-700">
                   <i class="fa-solid fa-arrow-up-right-from-square"></i>
                 </a>
                 <!-- Universal Working Delete Button -->
-                <button onclick="app.deleteTask('${esc(t.id)}')" class="px-3 py-1.5 rounded-lg bg-rose-500/15 hover:bg-rose-500 text-rose-300 hover:text-white border border-rose-500/30 text-xs font-bold transition-all flex items-center gap-1.5">
+                <button onclick="app.deleteTask('${t.id}')" class="px-3 py-1.5 rounded-lg bg-rose-500/15 hover:bg-rose-500 text-rose-300 hover:text-white border border-rose-500/30 text-xs font-bold transition-all flex items-center gap-1.5">
                   <i class="fa-solid fa-trash-can"></i>
                   <span>حذف واسترداد</span>
                 </button>
@@ -2220,39 +1829,37 @@
         if (!task) return;
 
         const isOwner = this.currentUser && this.currentUser.id === task.creatorId;
-        if (!isOwner && !this.isStaff()) {
+        const isAdmin = this.currentUser && (this.currentUser.role === 'admin' || this.currentUser.role === 'moderator');
+
+        if (!isOwner && !isAdmin) {
           this.toast('ليس لديك صلاحية لحذف هذه المهمة', 'error');
           return;
         }
 
-        this.confirmAction(`هل أنت متأكد من رغبتك في حذف المهمة: "${task.title}"؟\nسيتم استرداد ميزانية الأماكن الشاغرة غير المنجزة لحساب صاحب المهمة.`, () => {
-          // cancel pending proofs: their budget is being refunded below
-          this.store.state.submissions.forEach(sub => {
-            if (sub.taskId === task.id && sub.status === 'pending') {
-              sub.status = 'rejected';
-              sub.reviewedAt = new Date().toISOString();
-            }
+        if (!confirm(`هل أنت متأكد من رغبتك في حذف المهمة: "${task.title}"؟\nسيتم استرداد ميزانية الأماكن الشاغرة غير المنجزة لحساب صاحب المهمة.`)) {
+          return;
+        }
+
+        // Calculate unspent slots to refund
+        const unspentSlots = Math.max(0, task.totalSlots - task.completedSlots);
+        if (unspentSlots > 0) {
+          const refundAmount = Number((unspentSlots * task.reward).toFixed(2));
+          this.store.addLedgerEntry({
+            userId: task.creatorId,
+            type: 'CREDIT',
+            category: 'DEPOSIT',
+            amount: refundAmount,
+            description: `استرداد ميزانية متبقية لإلغاء المهمة: ${task.title} (${unspentSlots} مقعد شاغر)`,
+            referenceId: task.id
           });
+        }
 
-          const unspentSlots = Math.max(0, task.totalSlots - task.completedSlots);
-          if (unspentSlots > 0) {
-            const refundAmount = Number((unspentSlots * task.reward).toFixed(2));
-            this.store.addLedgerEntry({
-              userId: task.creatorId,
-              type: 'CREDIT',
-              category: 'CAMPAIGN_REFUND',
-              amount: refundAmount,
-              description: `استرداد ميزانية متبقية لإلغاء المهمة: ${task.title} (${unspentSlots} مقعد شاغر)`,
-              referenceId: task.id
-            });
-          }
+        // Remove task from array
+        this.store.state.tasks = this.store.state.tasks.filter(t => t.id !== taskId);
+        this.store.save();
 
-          this.store.state.tasks = this.store.state.tasks.filter(t => t.id !== taskId);
-          this.store.save();
-
-          this.toast('تم حذف المهمة بنجاح واسترداد الميزانية الشاغرة إلى السجل المالي.', 'success');
-          this.renderAll();
-        });
+        this.toast(`تم حذف المهمة بنجاح واسترداد الميزانية الشاغرة إلى السجل المالي.`, 'success');
+        this.renderAll();
       }
 
       // Open Submit Proof Modal
@@ -2265,18 +1872,12 @@
         const task = this.store.state.tasks.find(t => t.id === taskId);
         if (!task) return;
 
-        const blocked = this.getTaskBlockReason(task);
-        if (blocked) {
-          this.toast(blocked, 'error');
-          return;
-        }
-
         document.getElementById('proof-task-id').value = task.id;
         document.getElementById('proof-task-title').innerText = task.title;
         document.getElementById('proof-task-reward').innerText = `$${Number(task.reward).toFixed(2)} USDT`;
         document.getElementById('proof-task-instructions').innerText = task.instructions;
-        document.getElementById('proof-task-link').href = safeUrl(task.link);
-        document.getElementById('proof-task-icon').innerHTML = `<i class="${esc(task.icon)}"></i>`;
+        document.getElementById('proof-task-link').href = task.link;
+        document.getElementById('proof-task-icon').innerHTML = `<i class="${task.icon}"></i>`;
         
         // Reset file preview
         this.currentProofImage = null;
@@ -2288,44 +1889,29 @@
         this.openModal('modal-submit-proof');
       }
 
-      getTaskBlockReason(task) {
-        const u = this.currentUser;
-        if (!u) return 'يرجى تسجيل الدخول أولاً';
-        if (task.status !== 'active') return 'هذه المهمة لم تعد متاحة';
-        if (task.completedSlots >= task.totalSlots) return 'اكتملت مقاعد هذه المهمة';
-        if (task.creatorId === u.id) return 'لا يمكنك تنفيذ مهمة أنشأتها بنفسك';
-        if (this.store.state.submissions.some(s => s.taskId === task.id && s.userId === u.id && s.status !== 'rejected')) {
-          return 'لقد أرسلت إثباتاً لهذه المهمة مسبقاً';
-        }
-        return null;
-      }
-
-      // Real File Input Change with Thumbnail Preview (image is compressed before it is kept)
-      async handleProofImageChange(event) {
+      // Real File Input Change with Thumbnail Preview
+      handleProofImageChange(event) {
         const file = event.target.files[0];
         if (!file) return;
 
-        if (!/^image\/(png|jpe?g|webp|gif)$/i.test(file.type)) {
+        if (!file.type.startsWith('image/')) {
           this.toast('يرجى اختيار ملف صورة صالح (PNG, JPG, WEBP)', 'error');
-          event.target.value = '';
           return;
         }
 
         if (file.size > 5 * 1024 * 1024) {
           this.toast('حجم الصورة كبير جداً، الحد الأقصى 5 ميغابايت', 'error');
-          event.target.value = '';
           return;
         }
 
-        try {
-          this.currentProofImage = await this.compressImage(file);
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          this.currentProofImage = e.target.result;
           document.getElementById('proof-thumbnail-img').src = this.currentProofImage;
           document.getElementById('proof-upload-placeholder').classList.add('hidden');
           document.getElementById('proof-thumbnail-container').classList.remove('hidden');
-        } catch (e) {
-          this.currentProofImage = null;
-          this.toast('تعذّر قراءة الصورة، جرّب صورة أخرى', 'error');
-        }
+        };
+        reader.readAsDataURL(file);
       }
 
       // Handle Task Proof Submission
@@ -2333,17 +1919,11 @@
         if (!this.currentUser) return;
 
         const taskId = document.getElementById('proof-task-id').value;
-        const notes = document.getElementById('proof-notes').value.trim().slice(0, 300);
+        const notes = document.getElementById('proof-notes').value.trim();
         const task = this.store.state.tasks.find(t => t.id === taskId);
 
         if (!task) {
           this.toast('المهمة غير موجودة', 'error');
-          return;
-        }
-
-        const blocked = this.getTaskBlockReason(task);
-        if (blocked) {
-          this.toast(blocked, 'error');
           return;
         }
 
@@ -2352,8 +1932,9 @@
           return;
         }
 
+        const submissionId = 'sub_' + Date.now();
         const newSubmission = {
-          id: 'sub_' + Date.now(),
+          id: submissionId,
           taskId: task.id,
           taskTitle: task.title,
           taskReward: task.reward,
@@ -2368,150 +1949,59 @@
         };
 
         this.store.state.submissions.unshift(newSubmission);
-        if (!this.store.save()) {
-          // storage full: do not pretend the proof was sent
-          this.store.state.submissions.shift();
-          return;
-        }
+        this.store.save();
 
-        this.currentProofImage = null;
         this.closeModal('modal-submit-proof');
         this.toast('تم إرسال إثباتك بنجاح! سيتم تدقيقه من قبل الإدارة وسيضاف الرصيد فوراً لسجلك المالي.', 'success');
         this.renderAll();
       }
 
-      // Open Deposit Modal with the current deposit addresses
+      // Open Deposit Modal with Dynamic Admin Wallets
       openDepositModal() {
         if (!this.currentUser) {
           this.openAuthModal('login');
           return;
         }
         this.updateDynamicWalletsInDepositModal();
-        this.loadRemoteSettings(); // refresh from the remote file (if configured) every time the modal opens
         this.openModal('modal-deposit');
       }
 
       updateDynamicWalletsInDepositModal() {
         const bep20Elem = document.getElementById('deposit-bep20-addr');
         const binanceElem = document.getElementById('deposit-binance-id');
-        const cfg = this.getDepositSettings();
 
-        if (bep20Elem) bep20Elem.innerText = cfg.usdtAddress;
-        if (binanceElem) binanceElem.innerText = cfg.binancePayId;
+        const addr = this.store.state.settings.usdtAddress || '0x8849bCd25aF42D157aCe9523E9012Fa8F374188b';
+        const binanceId = this.store.state.settings.binancePayId || '589412301';
+
+        if (bep20Elem) bep20Elem.innerText = addr;
+        if (binanceElem) binanceElem.innerText = binanceId;
       }
 
-      // Handle User Deposit Submit: creates a PENDING request. Balance is added only after admin confirmation.
+      // Handle User Deposit Submit
       handleDepositSubmit() {
         if (!this.currentUser) return;
 
-        const amount = Math.round(parseFloat(document.getElementById('deposit-amount').value) * 100) / 100;
+        const amount = parseFloat(document.getElementById('deposit-amount').value);
         const txid = document.getElementById('deposit-txid').value.trim();
 
-        if (isNaN(amount) || amount < 1 || amount > 100000) {
-          this.toast('يرجى إدخال مبلغ إيداع صحيح (من 1$ إلى 100000$)', 'error');
-          return;
-        }
-        if (!Validators.txid(txid)) {
-          this.toast('معرف المعاملة غير صالح (أحرف وأرقام فقط، 6 خانات على الأقل)', 'error');
-          return;
-        }
-        const dup = (this.store.state.deposits || []).some(d => d.txid.toLowerCase() === txid.toLowerCase() && d.status !== 'rejected');
-        if (dup) {
-          this.toast('معرف المعاملة هذا مسجل مسبقاً', 'error');
+        if (isNaN(amount) || amount <= 0) {
+          this.toast('يرجى إدخال مبلغ إيداع صحيح', 'error');
           return;
         }
 
-        this.store.state.deposits.unshift({
-          id: 'DEP-' + Date.now(),
+        // Add credit entry directly to user ledger
+        this.store.addLedgerEntry({
           userId: this.currentUser.id,
-          userName: this.currentUser.name,
-          userEmail: this.currentUser.email,
+          type: 'CREDIT',
+          category: 'DEPOSIT',
           amount,
-          txid,
-          requestedAt: new Date().toISOString(),
-          status: 'pending', // 'pending' | 'approved' | 'rejected'
-          reviewedAt: null
+          description: `إيداع رصيد مؤكد عبر USDT/Binance Pay (TX: ${txid})`,
+          referenceId: txid
         });
-        if (!this.store.save()) {
-          this.store.state.deposits.shift();
-          return;
-        }
 
         this.closeModal('modal-deposit');
         document.getElementById('deposit-form').reset();
-        this.toast(`تم إرسال طلب إيداع $${amount.toFixed(2)} USDT. سيُضاف الرصيد بعد تأكيد الإدارة لوصول الحوالة.`, 'success');
-        this.renderAll();
-      }
-
-      renderAdminDeposits() {
-        const list = document.getElementById('admin-deposits-list');
-        const countBadge = document.getElementById('pending-deposits-count');
-        if (!list) return;
-
-        const pending = (this.store.state.deposits || []).filter(d => d.status === 'pending');
-        if (countBadge) countBadge.innerText = `${pending.length} طلب معلق`;
-
-        if (pending.length === 0) {
-          list.innerHTML = `
-            <div class="glass-panel rounded-2xl p-8 text-center text-slate-500 text-xs border border-slate-800">
-              <i class="fa-solid fa-circle-down text-3xl mb-2 text-emerald-400"></i>
-              <p class="font-bold text-slate-300">لا توجد طلبات إيداع معلقة حالياً.</p>
-            </div>`;
-          return;
-        }
-
-        list.innerHTML = pending.map(d => `
-          <div class="glass-card rounded-2xl p-4 border border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-            <div class="min-w-0">
-              <div class="flex items-center gap-2 mb-1 flex-wrap">
-                <span class="text-xs font-bold text-white">${esc(d.userName)}</span>
-                <span class="text-xs text-emerald-400 font-mono font-bold">+$${Number(d.amount).toFixed(2)} USDT</span>
-              </div>
-              <div class="text-[11px] text-slate-400 font-mono bg-navy-950 p-1.5 rounded-lg border border-slate-800 break-all mb-1">TXID: ${esc(d.txid)}</div>
-              <span class="text-[10px] text-slate-500">${esc(d.userEmail)} • ${new Date(d.requestedAt).toLocaleString('ar-EG')}</span>
-            </div>
-            <div class="flex items-center gap-2 shrink-0">
-              <button onclick="app.approveDeposit('${esc(d.id)}')" class="px-3.5 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-navy-950 text-xs font-black transition-all flex items-center gap-1.5">
-                <i class="fa-solid fa-check"></i><span>تأكيد الإيداع</span>
-              </button>
-              <button onclick="app.rejectDeposit('${esc(d.id)}')" class="px-3.5 py-2 rounded-xl bg-rose-500/20 hover:bg-rose-500 text-rose-300 hover:text-white border border-rose-500/40 text-xs font-bold transition-all flex items-center gap-1.5">
-                <i class="fa-solid fa-xmark"></i><span>رفض</span>
-              </button>
-            </div>
-          </div>`).join('');
-      }
-
-      approveDeposit(depId) {
-        if (!this.isAdmin()) { this.toast('اعتماد الإيداعات متاح للمدير العام فقط', 'error'); return; }
-        const dep = (this.store.state.deposits || []).find(d => d.id === depId);
-        if (!dep || dep.status !== 'pending') return;
-
-        this.store.addLedgerEntry({
-          userId: dep.userId,
-          type: 'CREDIT',
-          category: 'DEPOSIT',
-          amount: dep.amount,
-          description: `إيداع رصيد مؤكد عبر USDT/Binance Pay (TX: ${dep.txid})`,
-          referenceId: dep.txid
-        });
-        dep.status = 'approved';
-        dep.reviewedAt = new Date().toISOString();
-        this.store.save();
-
-        this.toast(`تم تأكيد إيداع $${Number(dep.amount).toFixed(2)} وإضافته لسجل ${dep.userName}.`, 'success');
-        this.renderAll();
-      }
-
-      rejectDeposit(depId) {
-        if (!this.isAdmin()) { this.toast('رفض الإيداعات متاح للمدير العام فقط', 'error'); return; }
-        const dep = (this.store.state.deposits || []).find(d => d.id === depId);
-        if (!dep || dep.status !== 'pending') return;
-
-        dep.status = 'rejected';
-        dep.reviewedAt = new Date().toISOString();
-        this.store.save();
-
-        this.toast('تم رفض طلب الإيداع.', 'error');
+        this.toast(`تم تسجيل وتأكيد إيداع $${amount.toFixed(2)} USDT في سجلك المالي بنجاح!`, 'success');
         this.renderAll();
       }
 
@@ -2535,7 +2025,7 @@
 
         const method = document.getElementById('withdraw-method').value;
         const address = document.getElementById('withdraw-address').value.trim();
-        const amount = Math.round(parseFloat(document.getElementById('withdraw-amount').value) * 100) / 100;
+        const amount = parseFloat(document.getElementById('withdraw-amount').value);
 
         if (isNaN(amount) || amount < CONFIG.MIN_WITHDRAWAL) {
           this.toast(`الحد الأدنى لطلب السحب هو $${CONFIG.MIN_WITHDRAWAL.toFixed(2)} USDT`, 'error');
@@ -2545,15 +2035,6 @@
         const userBalance = this.store.getUserBalance(this.currentUser.id);
         if (userBalance < amount) {
           this.toast(`رصيدك المتاح ($${userBalance.toFixed(2)}) أقل من المبلغ المطلوب سحبه ($${amount.toFixed(2)})`, 'error');
-          return;
-        }
-
-        if (method === 'USDT-BEP20' && !Validators.usdt(address)) {
-          this.toast('عنوان محفظة BEP20 غير صالح (يبدأ بـ 0x ويتكون من 42 خانة)', 'error');
-          return;
-        }
-        if (method === 'Binance-Pay' && !Validators.payId(address)) {
-          this.toast('معرف Binance Pay غير صالح (أرقام فقط)', 'error');
           return;
         }
 
@@ -2602,25 +2083,7 @@
         const filterSelect = document.getElementById('ledger-filter-select');
         const filter = filterSelect ? filterSelect.value : 'all';
 
-        if (!this.currentUser) {
-          if (tbody) tbody.innerHTML = '';
-          if (calcBalElem) calcBalElem.innerText = '$0.00';
-          if (earnedElem) earnedElem.innerText = '$0.00';
-          if (refElem) refElem.innerText = '$0.00';
-          return;
-        }
-
-        const pendingDepEl = document.getElementById('wallet-pending-deposits');
-        if (pendingDepEl) {
-          const pendingDeps = (this.store.state.deposits || []).filter(d => d.userId === this.currentUser.id && d.status === 'pending');
-          if (pendingDeps.length) {
-            const sum = pendingDeps.reduce((a, d) => a + Number(d.amount), 0);
-            pendingDepEl.innerText = `لديك ${pendingDeps.length} طلب إيداع قيد المراجعة بقيمة $${sum.toFixed(2)}`;
-            pendingDepEl.classList.remove('hidden');
-          } else {
-            pendingDepEl.classList.add('hidden');
-          }
-        }
+        if (!this.currentUser) return;
 
         const dynamicBalance = this.store.getUserBalance(this.currentUser.id);
         const totalEarned = this.store.getUserTotalEarned(this.currentUser.id);
@@ -2661,11 +2124,11 @@
 
           return `
             <tr class="hover:bg-slate-800/40 transition-colors">
-              <td class="py-3 px-4 font-mono text-[11px] text-slate-400">${esc(entry.id)}</td>
+              <td class="py-3 px-4 font-mono text-[11px] text-slate-400">${entry.id}</td>
               <td class="py-3 px-4">
                 <div class="flex items-center gap-2">
                   ${typeBadge}
-                  <span class="text-white text-xs">${esc(entry.description)}</span>
+                  <span class="text-white text-xs">${entry.description}</span>
                 </div>
               </td>
               <td class="py-3 px-4 font-mono font-bold ${isCredit ? 'text-ocean-400' : 'text-rose-400'} text-xs">
@@ -2691,14 +2154,12 @@
         const codeBadge = document.getElementById('referral-code-badge');
         const treeContainer = document.getElementById('network-tree-container');
 
-        const baseUrl = window.location.origin + window.location.pathname;
+        // Using direct Telegram bot username deep linking startapp
         const refCode = this.currentUser.referralCode || 'TW-' + this.currentUser.id.substring(4, 9).toUpperCase();
-        const refUrl = CONFIG.BOT_LINK
-          ? `${CONFIG.BOT_LINK}${CONFIG.BOT_LINK.includes('?') ? '&' : '?'}startapp=${encodeURIComponent(refCode)}`
-          : `${baseUrl}?ref=${encodeURIComponent(refCode)}`;
+        const refUrl = `https://t.me/TaskWave_Amarov_bot?startapp=${refCode}`;
 
         if (linkInput) linkInput.value = refUrl;
-        if (codeBadge) codeBadge.innerText = this.currentUser.referralCode || 'TW-REF';
+        if (codeBadge) codeBadge.innerText = refCode;
 
         if (!treeContainer) return;
 
@@ -2723,11 +2184,11 @@
                   <div class="p-4 rounded-2xl bg-navy-900 border ${isPaid ? 'border-emerald-500/40' : 'border-amber-500/40'} flex items-center justify-between gap-3 shadow-md">
                     <div class="flex items-center gap-3">
                       <div class="w-10 h-10 rounded-xl ${isPaid ? 'bg-emerald-500/20 text-emerald-400' : 'bg-amber-500/20 text-amber-400'} flex items-center justify-center font-bold text-sm">
-                        ${esc(m.name.charAt(0))}
+                        ${m.name.charAt(0)}
                       </div>
                       <div>
-                        <h4 class="text-xs font-bold text-white">${esc(m.name)}</h4>
-                        <span class="text-[10px] text-slate-400 block">${esc(m.email)}</span>
+                        <h4 class="text-xs font-bold text-white">${m.name}</h4>
+                        <span class="text-[10px] text-slate-400 block">${m.email}</span>
                       </div>
                     </div>
                     <div class="text-left">
@@ -2756,7 +2217,7 @@
                 <i class="fa-solid fa-crown"></i>
               </div>
               <div class="text-right">
-                <span class="text-xs font-black text-white block">${esc(this.currentUser.name)} (أنت)</span>
+                <span class="text-xs font-black text-white block">${this.currentUser.name} (أنت)</span>
                 <span class="text-[11px] text-crypto-teal font-mono font-bold">${referredMembers.length} أعضاء منضمين</span>
               </div>
             </div>
@@ -2785,30 +2246,11 @@
 
       copyText(text) {
         if (!text) return;
-        const fallback = () => {
-          try {
-            const ta = document.createElement('textarea');
-            ta.value = text;
-            ta.setAttribute('readonly', '');
-            ta.style.cssText = 'position:fixed;top:0;left:0;opacity:0;';
-            document.body.appendChild(ta);
-            ta.focus();
-            ta.select();
-            ta.setSelectionRange(0, text.length);
-            const ok = document.execCommand('copy');
-            document.body.removeChild(ta);
-            this.toast(ok ? 'تم النسخ إلى الحافظة بنجاح' : 'تعذر النسخ التلقائي، انسخ النص يدوياً', ok ? 'success' : 'error');
-          } catch (e) {
-            this.toast('تعذر النسخ التلقائي، انسخ النص يدوياً', 'error');
-          }
-        };
-        if (navigator.clipboard && navigator.clipboard.writeText && window.isSecureContext) {
-          navigator.clipboard.writeText(text)
-            .then(() => this.toast('تم النسخ إلى الحافظة بنجاح', 'success'))
-            .catch(fallback);
-        } else {
-          fallback();
-        }
+        navigator.clipboard.writeText(text).then(() => {
+          this.toast('تم النسخ إلى الحافظة بنجاح', 'success');
+        }).catch(() => {
+          this.toast('تعذر النسخ التلقائي', 'error');
+        });
       }
 
       // ADMIN PANEL CONTROLLER
@@ -2853,15 +2295,8 @@
           roleBadge.innerText = this.currentUser.role === 'admin' ? 'Super Admin' : 'مشرف (Moderator)';
         }
 
-        // money / roles / wallet settings are for the Super Admin only
-        ['adm-tab-deposits', 'adm-tab-users', 'adm-tab-settings'].forEach(id => {
-          const el = document.getElementById(id);
-          if (el) el.classList.toggle('hidden', this.currentUser.role !== 'admin');
-        });
-
         this.calculateAndRenderAnalytics();
         this.renderAdminSubmissions();
-        this.renderAdminDeposits();
         this.renderAdminWithdrawals();
         this.renderAdminAllTasks();
         this.renderAdminUsers();
@@ -2869,9 +2304,8 @@
         // Populate settings form
         const usdtInput = document.getElementById('setting-usdt-address');
         const binanceInput = document.getElementById('setting-binance-pay-id');
-        const cfg = this.getDepositSettings();
-        if (usdtInput && document.activeElement !== usdtInput) usdtInput.value = cfg.usdtAddress || '';
-        if (binanceInput && document.activeElement !== binanceInput) binanceInput.value = cfg.binancePayId || '';
+        if (usdtInput) usdtInput.value = this.store.state.settings.usdtAddress || '';
+        if (binanceInput) binanceInput.value = this.store.state.settings.binancePayId || '';
       }
 
       // FINANCIAL ANALYTICS & P&L (ADMIN AUDIT CALCULATION)
@@ -2899,7 +2333,6 @@
 
         let completedTasksCount = 0;
         let referralBonusesTotal = 0;
-        let withdrawCount = 0;
 
         filteredLedger.forEach(entry => {
           // Deposits credited
@@ -2912,6 +2345,10 @@
             const margin = Number(entry.amount) * (CONFIG.PLATFORM_FEE_PERCENT / (1 + CONFIG.PLATFORM_FEE_PERCENT));
             platformRevenue += margin;
           }
+          // User approved withdrawals
+          if (entry.type === 'DEBIT' && entry.category === 'WITHDRAW_LOCK') {
+            platformExpenses += Number(entry.amount);
+          }
           // Worker tasks payouts
           if (entry.type === 'CREDIT' && entry.category === 'TASK_REWARD') {
             completedTasksCount++;
@@ -2920,16 +2357,6 @@
           if (entry.type === 'CREDIT' && entry.category === 'AFFILIATE_BONUS') {
             referralBonusesTotal += Number(entry.amount);
             platformExpenses += Number(entry.amount);
-          }
-        });
-
-        // Paid withdrawals only (a locked/rejected request is not an expense)
-        this.store.state.withdrawals.forEach(w => {
-          if (w.status !== 'completed') return;
-          const t = new Date(w.reviewedAt || w.requestedAt).getTime();
-          if (cutoffTime === 0 || t >= cutoffTime) {
-            platformExpenses += Number(w.amount);
-            withdrawCount++;
           }
         });
 
@@ -2953,7 +2380,7 @@
         const refPaidElem = document.getElementById('pnl-referrals-paid');
         const activeCampElem = document.getElementById('pnl-active-campaigns');
 
-        const completedWds = withdrawCount;
+        const completedWds = this.store.state.withdrawals.filter(w => w.status === 'completed').length;
         const activeTasks = this.store.state.tasks.filter(t => t.status === 'active').length;
 
         if (tasksCountElem) tasksCountElem.innerText = completedTasksCount;
@@ -2987,8 +2414,8 @@
             <div class="glass-card rounded-2xl p-4 border border-slate-800 flex flex-col md:flex-row md:items-center justify-between gap-4">
               <div class="flex items-start gap-4">
                 <!-- Real Thumbnail Preview (Click to Zoom) -->
-                <div onclick="app.openZoomModal('${esc(sub.id)}')" class="cursor-pointer group relative w-20 h-20 rounded-xl overflow-hidden border border-slate-700 bg-navy-950 shrink-0">
-                  <img src="${esc(safeImg(sub.proofImage))}" alt="Screenshot Thumbnail" class="w-full h-full object-cover">
+                <div onclick="app.openZoomModal('${sub.id}')" class="cursor-pointer group relative w-20 h-20 rounded-xl overflow-hidden border border-slate-700 bg-navy-950 shrink-0">
+                  <img src="${sub.proofImage}" alt="Screenshot Thumbnail" class="w-full h-full object-cover">
                   <div class="absolute inset-0 bg-navy-950/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                     <i class="fa-solid fa-magnifying-glass-plus text-ocean-400 text-sm"></i>
                   </div>
@@ -2996,27 +2423,27 @@
 
                 <div>
                   <div class="flex items-center gap-2 mb-1">
-                    <h4 class="text-xs font-bold text-white">${esc(sub.taskTitle)}</h4>
+                    <h4 class="text-xs font-bold text-white">${sub.taskTitle}</h4>
                     <span class="text-ocean-400 font-mono font-bold text-xs">+$${Number(sub.taskReward).toFixed(2)} USDT</span>
                   </div>
                   <div class="text-[11px] text-slate-400 mb-1.5 flex items-center gap-2">
-                    <span>المنفذ: <strong class="text-white">${esc(sub.userName)}</strong> (${esc(sub.userEmail)})</span>
+                    <span>المنفذ: <strong class="text-white">${sub.userName}</strong> (${sub.userEmail})</span>
                     <span>•</span>
                     <span>${new Date(sub.submittedAt).toLocaleTimeString('ar-EG')}</span>
                   </div>
                   <div class="p-2 rounded-lg bg-navy-950/80 border border-slate-800 text-[11px] text-slate-300">
-                    <strong class="text-slate-400">ملاحظات المنفذ:</strong> ${esc(sub.notes || 'لا توجد ملاحظات')}
+                    <strong class="text-slate-400">ملاحظات المنفذ:</strong> ${sub.notes || 'لا توجد ملاحظات'}
                   </div>
                 </div>
               </div>
 
               <!-- Action Buttons -->
               <div class="flex items-center gap-2 self-end md:self-center shrink-0">
-                <button onclick="app.approveSubmission('${esc(sub.id)}')" class="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-black transition-all flex items-center gap-1.5 shadow-md shadow-blue-600/30">
+                <button onclick="app.approveSubmission('${sub.id}')" class="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-black transition-all flex items-center gap-1.5 shadow-md shadow-blue-600/30">
                   <i class="fa-solid fa-check"></i>
                   <span>قبول واعتماد الرصيد</span>
                 </button>
-                <button onclick="app.rejectSubmission('${esc(sub.id)}')" class="px-3.5 py-2 rounded-xl bg-rose-500/20 hover:bg-rose-500 text-rose-300 hover:text-white border border-rose-500/40 text-xs font-bold transition-all flex items-center gap-1.5">
+                <button onclick="app.rejectSubmission('${sub.id}')" class="px-3.5 py-2 rounded-xl bg-rose-500/20 hover:bg-rose-500 text-rose-300 hover:text-white border border-rose-500/40 text-xs font-bold transition-all flex items-center gap-1.5">
                   <i class="fa-solid fa-xmark"></i>
                   <span>رفض</span>
                 </button>
@@ -3028,24 +2455,8 @@
 
       // APPROVE SUBMISSION WITH AUTOMATED LEDGER CREDIT & AFFILIATE CHECK
       approveSubmission(subId) {
-        if (!this.isStaff()) return;
         const sub = this.store.state.submissions.find(s => s.id === subId);
-        // guard: an already reviewed proof must never be paid twice
-        if (!sub || sub.status !== 'pending') return;
-
-        const task = this.store.state.tasks.find(t => t.id === sub.taskId);
-        if (!task) {
-          sub.status = 'rejected';
-          sub.reviewedAt = new Date().toISOString();
-          this.store.save();
-          this.toast('المهمة محذوفة ولا يوجد رصيد مرصود لها، تم رفض الإثبات.', 'error');
-          this.renderAll();
-          return;
-        }
-        if (task.completedSlots >= task.totalSlots) {
-          this.toast('اكتملت جميع مقاعد هذه المهمة ولا توجد ميزانية متبقية لهذا الإثبات.', 'error');
-          return;
-        }
+        if (!sub) return;
 
         // 1. Credit worker's ledger
         this.store.addLedgerEntry({
@@ -3057,9 +2468,11 @@
           referenceId: sub.id
         });
 
-        // 2. Increment completedSlots on task (close it when full)
-        task.completedSlots = (task.completedSlots || 0) + 1;
-        if (task.completedSlots >= task.totalSlots) task.status = 'completed';
+        // 2. Increment completedSlots on task
+        const task = this.store.state.tasks.find(t => t.id === sub.taskId);
+        if (task) {
+          task.completedSlots = (task.completedSlots || 0) + 1;
+        }
 
         // 3. AFFILIATE RULE: Exact $0.12 added to referrer ONLY on the FIRST approved task
         const workerUser = this.store.state.users.find(u => u.id === sub.userId);
@@ -3089,9 +2502,8 @@
 
       // REJECT SUBMISSION
       rejectSubmission(subId) {
-        if (!this.isStaff()) return;
         const sub = this.store.state.submissions.find(s => s.id === subId);
-        if (!sub || sub.status !== 'pending') return;
+        if (!sub) return;
 
         sub.status = 'rejected';
         sub.reviewedAt = new Date().toISOString();
@@ -3125,23 +2537,23 @@
             <div class="glass-card rounded-2xl p-4 border border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div>
                 <div class="flex items-center gap-2 mb-1">
-                  <span class="text-xs font-bold text-white">${esc(wd.userName)}</span>
+                  <span class="text-xs font-bold text-white">${wd.userName}</span>
                   <span class="text-xs text-rose-400 font-mono font-bold">-$${Number(wd.amount).toFixed(2)} USDT</span>
-                  <span class="text-[10px] bg-navy-800 text-slate-300 px-2 py-0.5 rounded font-mono">${esc(wd.method)}</span>
+                  <span class="text-[10px] bg-navy-800 text-slate-300 px-2 py-0.5 rounded font-mono">${wd.method}</span>
                 </div>
                 <div class="text-[11px] text-slate-400 font-mono bg-navy-950 p-1.5 rounded-lg border border-slate-800 break-all mb-1">
-                  العنوان: ${esc(wd.address)}
+                  العنوان: ${wd.address}
                 </div>
                 <span class="text-[10px] text-slate-500">${new Date(wd.requestedAt).toLocaleString('ar-EG')}</span>
               </div>
 
               <div class="flex items-center gap-2 shrink-0">
-                <button onclick="app.approveWithdrawal('${esc(wd.id)}')" class="px-3.5 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-navy-950 text-xs font-black transition-all flex items-center gap-1.5">
+                <button onclick="app.approveWithdrawal('${wd.id}')" class="px-3.5 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-navy-950 text-xs font-black transition-all flex items-center gap-1.5">
                   <i class="fa-solid fa-check"></i>
                   <span>تأكيد التحويل</span>
                 </button>
                 <!-- AUTOMATED REFUND ON REJECT -->
-                <button onclick="app.rejectWithdrawal('${esc(wd.id)}')" class="px-3.5 py-2 rounded-xl bg-rose-500/20 hover:bg-rose-500 text-rose-300 hover:text-white border border-rose-500/40 text-xs font-bold transition-all flex items-center gap-1.5">
+                <button onclick="app.rejectWithdrawal('${wd.id}')" class="px-3.5 py-2 rounded-xl bg-rose-500/20 hover:bg-rose-500 text-rose-300 hover:text-white border border-rose-500/40 text-xs font-bold transition-all flex items-center gap-1.5">
                   <i class="fa-solid fa-rotate-left"></i>
                   <span>رفض واسترداد تلقائي</span>
                 </button>
@@ -3153,9 +2565,8 @@
 
       // APPROVE WITHDRAWAL
       approveWithdrawal(wdId) {
-        if (!this.isStaff()) return;
         const wd = this.store.state.withdrawals.find(w => w.id === wdId);
-        if (!wd || wd.status !== 'pending') return;
+        if (!wd) return;
 
         wd.status = 'completed';
         wd.reviewedAt = new Date().toISOString();
@@ -3165,12 +2576,12 @@
         this.renderAll();
       }
 
-      // REJECT WITHDRAWAL WITH AUTOMATED LEDGER REFUND (guarded: can never refund twice)
+      // REJECT WITHDRAWAL WITH AUTOMATED LEDGER REFUND
       rejectWithdrawal(wdId) {
-        if (!this.isStaff()) return;
         const wd = this.store.state.withdrawals.find(w => w.id === wdId);
-        if (!wd || wd.status !== 'pending') return;
+        if (!wd) return;
 
+        // 100% AUTOMATED REFUND: Credit user's ledger back with the locked amount
         this.store.addLedgerEntry({
           userId: wd.userId,
           type: 'CREDIT',
@@ -3199,12 +2610,12 @@
             <div class="glass-card rounded-2xl p-4 border border-slate-800 flex items-center justify-between gap-4">
               <div class="flex items-center gap-3">
                 <div class="w-9 h-9 rounded-xl bg-navy-800 border border-slate-700 flex items-center justify-center text-sm shrink-0">
-                  <i class="${esc(t.icon)}"></i>
+                  <i class="${t.icon}"></i>
                 </div>
                 <div>
-                  <h4 class="text-xs font-bold text-white">${esc(t.title)}</h4>
+                  <h4 class="text-xs font-bold text-white">${t.title}</h4>
                   <div class="flex items-center gap-3 text-[11px] text-slate-400 mt-0.5">
-                    <span>صاحب الحملة: <strong class="text-white">${esc(t.creatorName)}</strong></span>
+                    <span>صاحب الحملة: <strong class="text-white">${t.creatorName}</strong></span>
                     <span>المقاعد: <strong>${t.completedSlots}/${t.totalSlots}</strong></span>
                     <span class="text-ocean-400 font-mono">+$${Number(t.reward).toFixed(2)}</span>
                   </div>
@@ -3212,7 +2623,7 @@
               </div>
 
               <!-- Universal Working Delete Button for Admin -->
-              <button onclick="app.deleteTask('${esc(t.id)}')" class="px-3.5 py-1.5 rounded-lg bg-rose-500/20 hover:bg-rose-500 text-rose-300 hover:text-white border border-rose-500/30 text-xs font-bold transition-all flex items-center gap-1.5 shrink-0">
+              <button onclick="app.deleteTask('${t.id}')" class="px-3.5 py-1.5 rounded-lg bg-rose-500/20 hover:bg-rose-500 text-rose-300 hover:text-white border border-rose-500/30 text-xs font-bold transition-all flex items-center gap-1.5 shrink-0">
                 <i class="fa-solid fa-trash"></i>
                 <span>حذف شامل</span>
               </button>
@@ -3232,8 +2643,8 @@
 
           return `
             <tr class="hover:bg-slate-800/40 transition-colors">
-              <td class="py-3 px-4 text-white font-bold text-xs">${esc(u.name)}</td>
-              <td class="py-3 px-4 text-slate-300 text-xs font-mono">${esc(u.email)}</td>
+              <td class="py-3 px-4 text-white font-bold text-xs">${u.name}</td>
+              <td class="py-3 px-4 text-slate-300 text-xs font-mono">${u.email}</td>
               <td class="py-3 px-4">
                 <span class="text-[10px] px-2 py-0.5 rounded-full font-bold ${
                   u.role === 'admin' ? 'bg-rose-500/20 text-rose-300 border border-rose-500/30' :
@@ -3243,16 +2654,16 @@
                 </span>
               </td>
               <td class="py-3 px-4 text-ocean-400 font-mono font-bold text-xs">$${balance.toFixed(2)}</td>
-              <td class="py-3 px-4 text-slate-400 font-mono text-[10px]">${esc(u.deviceFp || 'غير مسجل')}</td>
+              <td class="py-3 px-4 text-slate-400 font-mono text-[10px]">${u.deviceFp || 'غير مسجل'}</td>
               <td class="py-3 px-4">
                 ${!isSuperAdmin ? `
                   <div class="flex items-center gap-1.5">
                     ${u.role !== 'moderator' ? `
-                      <button onclick="app.setUserRole('${esc(u.id)}', 'moderator')" class="px-2 py-1 rounded bg-amber-500/20 text-amber-300 hover:bg-amber-500 hover:text-navy-950 text-[11px] font-bold transition-all">
+                      <button onclick="app.setUserRole('${u.id}', 'moderator')" class="px-2 py-1 rounded bg-amber-500/20 text-amber-300 hover:bg-amber-500 hover:text-navy-950 text-[11px] font-bold transition-all">
                         ترقية لمشرف
                       </button>
                     ` : `
-                      <button onclick="app.setUserRole('${esc(u.id)}', 'user')" class="px-2 py-1 rounded bg-slate-800 text-slate-300 hover:bg-slate-700 text-[11px] font-bold transition-all">
+                      <button onclick="app.setUserRole('${u.id}', 'user')" class="px-2 py-1 rounded bg-slate-800 text-slate-300 hover:bg-slate-700 text-[11px] font-bold transition-all">
                         تنزيل لعضو
                       </button>
                     `}
@@ -3264,57 +2675,40 @@
         }).join('');
       }
 
-      // Promote / Demote user role (Super Admin only)
+      // Promote / Demote user role
       setUserRole(userId, newRole) {
-        if (!this.isAdmin()) {
-          this.toast('تغيير الرتب متاح للمدير العام فقط', 'error');
-          return;
-        }
-        if (!['user', 'moderator'].includes(newRole)) return;
         const user = this.store.state.users.find(u => u.id === userId);
-        if (!user || user.email === CONFIG.SUPER_ADMIN_EMAIL || user.role === 'admin') return;
+        if (!user) return;
         user.role = newRole;
         this.store.save();
-        this.toast(`تم تحديث رتبة المستخدم (${user.name}) إلى ${newRole === 'moderator' ? 'مشرف' : 'عضو'} بنجاح.`, 'success');
+        this.toast(`تم تحديث رتبة المستخدم (${user.name}) إلى ${newRole} بنجاح.`, 'success');
         this.renderAll();
       }
 
-      // Deposit addresses: live preview on THIS device + ready-to-publish settings file.
-      // (Addresses shown to users come from CONFIG.DEPOSIT / REMOTE_SETTINGS_URL, never from a user's localStorage.)
+      // Save Dynamic Wallet Settings (Super Admin)
       saveAdminWalletSettings() {
-        if (!this.isAdmin()) {
-          this.toast('تعديل العناوين متاح للمدير العام فقط', 'error');
-          return;
-        }
         const usdt = document.getElementById('setting-usdt-address').value.trim();
         const binance = document.getElementById('setting-binance-pay-id').value.trim();
 
-        if (!Validators.usdt(usdt)) {
-          this.toast('عنوان USDT غير صالح: يجب أن يبدأ بـ 0x ويتكون من 42 خانة (BEP20)', 'error');
-          return;
-        }
-        if (!Validators.payId(binance)) {
-          this.toast('معرف Binance Pay غير صالح: أرقام فقط (من 5 إلى 15 خانة)', 'error');
+        if (!usdt || !binance) {
+          this.toast('يرجى إدخال عناوين صالحة', 'error');
           return;
         }
 
-        this.runtimeDeposit = { usdtAddress: usdt, binancePayId: binance };
+        this.store.state.settings.usdtAddress = usdt;
+        this.store.state.settings.binancePayId = binance;
+        this.store.save();
+
         this.updateDynamicWalletsInDepositModal();
-
-        const out = document.getElementById('setting-json-output');
-        const wrap = document.getElementById('settings-output-wrap');
-        if (out) out.value = JSON.stringify({ usdtAddress: usdt, binancePayId: binance }, null, 2);
-        if (wrap) wrap.classList.remove('hidden');
-
-        this.toast('تمت معاينة العناوين على جهازك. انسخ ملف الإعدادات أدناه لنشره لجميع المستخدمين.', 'success');
+        this.toast('تم حفظ وتحديث عناوين الإيداع العالمية بنجاح!', 'success');
       }
 
       // Zoom Modal for Admin Image Inspection
       openZoomModal(subId) {
         const sub = this.store.state.submissions.find(s => s.id === subId);
-        if (!sub || !safeImg(sub.proofImage)) return;
+        if (!sub || !sub.proofImage) return;
 
-        document.getElementById('zoom-preview-img').src = safeImg(sub.proofImage);
+        document.getElementById('zoom-preview-img').src = sub.proofImage;
         this.openModal('modal-zoom-img');
       }
 
@@ -3379,7 +2773,7 @@
         this.openAuthModal(this.authMode === 'login' ? 'register' : 'login');
       }
 
-      async handleAuthSubmit() {
+      handleAuthSubmit() {
         // Enforce Math Captcha Verification
         const captchaAns = parseInt(document.getElementById('auth-captcha-answer')?.value, 10);
         if (isNaN(captchaAns) || captchaAns !== this.captchaExpected) {
@@ -3391,31 +2785,9 @@
         const email = document.getElementById('auth-email').value.trim().toLowerCase();
         const password = document.getElementById('auth-password').value;
 
-        if (!Validators.email(email)) {
-          this.toast('يرجى إدخال بريد إلكتروني صالح', 'error');
-          return;
-        }
-
-        let hash;
-        try {
-          hash = await Security.hashPassword(email, password);
-        } catch (e) {
-          this.toast('المتصفح لا يدعم التشفير المطلوب. افتح التطبيق عبر رابط HTTPS.', 'error');
-          return;
-        }
-
         if (this.authMode === 'login') {
-          let user = this.store.state.users.find(u => u.email.toLowerCase() === email && u.passwordHash === hash);
-          // legacy accounts that still hold a plain-text password: accept once, then upgrade to a hash
-          if (!user) {
-            const legacy = this.store.state.users.find(u => u.email.toLowerCase() === email && u.password && u.password === password);
-            if (legacy) {
-              legacy.passwordHash = hash;
-              delete legacy.password;
-              this.store.save();
-              user = legacy;
-            }
-          }
+          // Check credentials
+          const user = this.store.state.users.find(u => u.email.toLowerCase() === email && u.password === password);
           if (!user) {
             this.toast('البريد الإلكتروني أو كلمة المرور غير صحيحة', 'error');
             this.refreshCaptcha();
@@ -3423,7 +2795,7 @@
           }
 
           this.currentUser = user;
-          try { localStorage.setItem(CONFIG.SESSION_KEY, user.id); } catch (e) {}
+          sessionStorage.setItem('_TW_SESSION_USER_ID_', user.id);
           this.closeModal('modal-auth');
           this.toast(`أهلاً بك مجدداً، ${user.name}!`, 'success');
           this.renderAll();
@@ -3432,12 +2804,8 @@
           const name = document.getElementById('auth-name').value.trim();
           const refCode = document.getElementById('auth-referrer').value.trim();
 
-          if (name.length < 2 || name.length > 40) {
-            this.toast('اسم المستخدم يجب أن يكون بين 2 و 40 حرفاً', 'error');
-            return;
-          }
-          if (password.length < 6) {
-            this.toast('كلمة المرور يجب ألا تقل عن 6 خانات', 'error');
+          if (!name) {
+            this.toast('يرجى إدخال اسم المستخدم', 'error');
             return;
           }
 
@@ -3473,7 +2841,7 @@
             id: newUserId,
             name,
             email,
-            passwordHash: hash,
+            password,
             role: 'user',
             deviceFp: currentDeviceFp,
             referralCode: myReferralCode,
@@ -3486,7 +2854,7 @@
           this.store.save();
 
           this.currentUser = newUser;
-          try { localStorage.setItem(CONFIG.SESSION_KEY, newUser.id); } catch (e) {}
+          sessionStorage.setItem('_TW_SESSION_USER_ID_', newUser.id);
           this.closeModal('modal-auth');
           this.toast(`تم إنشاء حسابك بنجاح! مرحباً بك في TaskWave، ${name}!`, 'success');
           this.renderAll();
@@ -3494,10 +2862,8 @@
       }
 
       logout() {
-        try { localStorage.removeItem(CONFIG.SESSION_KEY); sessionStorage.removeItem(CONFIG.SESSION_KEY); } catch (e) {}
+        sessionStorage.removeItem('_TW_SESSION_USER_ID_');
         this.currentUser = null;
-        this.currentProofImage = null;
-        this.closeProfileMenu();
         this.toast('تم تسجيل الخروج بنجاح', 'success');
         this.renderAll();
         this.navigate('tasks');
@@ -3525,8 +2891,7 @@
         }`;
 
         const icon = type === 'success' ? 'fa-circle-check text-emerald-400' : (type === 'error' ? 'fa-circle-exclamation text-rose-400' : 'fa-info-circle text-crypto-blue');
-        toast.innerHTML = `<i class="fa-solid ${icon} text-base shrink-0"></i><span class="toast-msg"></span>`;
-        toast.querySelector('.toast-msg').textContent = message;
+        toast.innerHTML = `<i class="fa-solid ${icon} text-base shrink-0"></i><span>${message}</span>`;
 
         container.appendChild(toast);
         setTimeout(() => toast.classList.remove('translate-y-3'), 10);
